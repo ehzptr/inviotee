@@ -486,8 +486,9 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent)}
 
 <!-- ============================ 1. KONTEN ============================ -->
 <script>
+  const urlParams = new URLSearchParams(window.location.search);
 const INVITATION={
-  theme:"fajar",
+  theme: urlParams.get('theme') === 'java' ? 'java' : 'default_theme',
   nav:["Sampul","Mempelai","Kisah","Acara","Lokasi","Galeri","RSVP","Penutup"],
   gate:{eyebrow:"Undangan Pernikahan",to:"Kepada Yth. Bapak/Ibu/Saudara/i",guest:"Tamu Undangan",open:"Buka Undangan"},
   couple:{
