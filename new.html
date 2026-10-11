@@ -1,0 +1,560 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>The Wedding of Tiwi &amp; Fatah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Outfit:wght@300;400;600&display=swap">
+<style>
+/* Layout: one dark-green world. Type-led, no photos. Songket "pucuk rebung" triangles as the single motif. */
+:root {
+  --ink: #0b2723;      /* deep green ground */
+  --ink2: #10372f;     /* lifted panel */
+  --leaf: #1b5247;     /* arch fill */
+  --songket: #f0b323;  /* Malay yellow, the only accent */
+  --chalk: #edf2ec;    /* cool paper white */
+  --mute: #a8c1b7;     /* secondary text */
+  --line: rgba(237, 242, 236, 0.2);
+  --display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --body: "Outfit", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { background: var(--ink); }
+body {
+  background: var(--ink);
+  color: var(--chalk);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.65;
+  font-weight: 400;
+  padding-bottom: 64px;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+img { max-width: 100%; }
+a { color: var(--songket); }
+h1, h2, h3, p, blockquote { margin: 0; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.08; }
+h2 { font-size: 40px; font-size: clamp(36px, 8vw, 64px); text-wrap: balance; }
+
+a:focus, button:focus, input:focus, select:focus, textarea:focus { outline: 2px solid var(--songket); outline-offset: 3px; }
+a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: 20px; padding-right: 20px; }
+.narrow { max-width: 720px; }
+/* One section per scroll. A section taller than the screen scrolls freely inside, then snaps on to the next. */
+html { scroll-snap-type: y mandatory; -webkit-scroll-snap-type: y mandatory; }
+.hero, .sec { scroll-snap-align: start; scroll-snap-stop: always; }
+.sec {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+.sec > .wrap { width: 100%; }
+@media (max-width: 640px) { .sec { padding-top: 64px; padding-bottom: 72px; } }
+
+/* pucuk rebung band (static tile) */
+.band {
+  height: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='30' viewBox='0 0 44 30'%3E%3Cpath fill='%23F0B323' fill-rule='evenodd' d='M0 30L22 0L44 30ZM12 30L22 12L32 30Z'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: center bottom;
+}
+
+/* buttons: sharp, one shape everywhere */
+.btn {
+  display: inline-block;
+  padding: 15px 26px 14px;
+  border: 1px solid var(--songket);
+  background: transparent;
+  color: var(--songket);
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.btn:hover { background: var(--songket); color: var(--ink); }
+.btn.solid { background: var(--songket); color: var(--ink); }
+.btn.solid:hover { background: transparent; color: var(--songket); }
+
+/* hero */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--ink);
+}
+.hero-in { width: 100%; padding-top: 56px; padding-bottom: 96px; }
+.hero-top { font-family: var(--display); font-style: italic; font-size: 22px; color: var(--mute); margin-bottom: 8px; }
+.hero-names { font-size: 88px; font-size: clamp(76px, 24vw, 190px); line-height: 1; font-weight: 500; }
+.mask { display: block; overflow: hidden; padding-bottom: 0.08em; }
+.h-name { display: block; }
+.n2 { padding-left: 14%; }
+.h-amp { display: block; padding-left: 4%; font-family: var(--display); font-style: italic; font-weight: 500; font-size: 0.5em; line-height: 0.9; color: var(--songket); }
+.hero-sub { margin-top: 28px; font-size: 18px; color: var(--chalk); max-width: 28em; }
+.hero-guest { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--line); max-width: 320px; font-size: 14px; color: var(--mute); }
+.hero-guest strong { display: block; font-family: var(--display); font-size: 26px; font-weight: 600; color: var(--chalk); line-height: 1.2; margin-top: 2px; }
+.hero .btn { margin-top: 28px; }
+.rebung { position: absolute; left: 0; right: 0; bottom: 0; height: 30px; overflow: hidden; display: flex; justify-content: center; }
+.rebung i { display: block; position: relative; flex: none; width: 0; height: 0; border-left: 22px solid transparent; border-right: 22px solid transparent; border-bottom: 30px solid var(--songket); }
+.rebung i:after { content: ""; position: absolute; left: -10px; top: 12px; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 18px solid var(--ink); }
+
+/* ayat */
+.ayat blockquote { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 26px; line-height: 1.5; margin-top: 28px; margin-bottom: 40px; max-width: 34em; }
+.ayat h2 { color: var(--songket); font-size: 30px; font-size: clamp(28px, 6vw, 40px); margin-top: 40px; }
+
+/* mempelai */
+.couple-grid { margin-top: 56px; display: grid; grid-template-columns: 1fr; grid-gap: 64px; }
+@media (min-width: 768px) {
+  .couple-grid { grid-template-columns: 1fr 1fr; grid-column-gap: 72px; }
+  .person.p2 { margin-top: 96px; }
+}
+.arch { position: relative; width: 100%; max-width: 320px; height: 0; padding-top: 125%; border-radius: 999px 999px 0 0; overflow: hidden; background: var(--leaf); }
+.arch-in { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; }
+.arch-in span { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 150px; line-height: 1; color: var(--songket); padding-bottom: 20px; }
+.arch .band { position: absolute; left: 0; right: 0; bottom: 0; opacity: 0.9; }
+.person h3 { font-size: 56px; margin-top: 28px; }
+.person .full { font-size: 19px; font-weight: 600; margin-top: 6px; }
+.person .parents { color: var(--mute); margin-top: 10px; max-width: 24em; }
+.person .ig { display: inline-block; margin-top: 14px; font-size: 15px; }
+
+/* kisah */
+.kisah { background: var(--ink2); }
+.tl { position: relative; margin-top: 56px; padding-left: 44px; }
+.tl-track, .tl-fill { position: absolute; left: 9px; top: 8px; bottom: 8px; width: 2px; }
+.tl-track { background: var(--line); }
+.tl-fill { background: var(--songket); }
+.tl-i { position: relative; margin-bottom: 56px; max-width: 34em; }
+.tl-i:last-child { margin-bottom: 0; }
+.tl-dot { position: absolute; left: -44px; top: 14px; width: 20px; height: 20px; border: 2px solid var(--songket); border-radius: 50%; background: var(--songket); }
+.anim .tl-dot { background: var(--ink2); }
+.anim .tl-i.on .tl-dot { background: var(--songket); }
+.tl-i h3 { font-size: 44px; font-size: clamp(36px, 7vw, 52px); }
+.tl-i p { color: var(--mute); margin-top: 10px; }
+
+/* hitung */
+.hitung { text-align: left; }
+.units { display: flex; margin-top: 40px; margin-bottom: 40px; }
+.unit { margin-right: 28px; min-width: 0; }
+.unit b { display: block; font-family: var(--display); font-weight: 600; font-size: 56px; font-size: clamp(48px, 13vw, 110px); line-height: 1; font-variant-numeric: tabular-nums; color: var(--songket); }
+.unit span { display: block; margin-top: 6px; font-size: 15px; color: var(--mute); }
+
+/* acara */
+.acara { background: var(--ink2); }
+.acara-grid { display: grid; grid-template-columns: 1fr; grid-gap: 40px; align-items: end; }
+@media (min-width: 768px) { .acara-grid { grid-template-columns: 5fr 7fr; grid-column-gap: 72px; } }
+.bigdate b { display: block; font-family: var(--display); font-weight: 600; font-size: 150px; font-size: clamp(130px, 30vw, 280px); line-height: 0.85; color: var(--songket); }
+.bigdate span { display: block; font-family: var(--display); font-size: 30px; margin-top: 14px; }
+.rows .row { padding-top: 22px; padding-bottom: 22px; border-top: 1px solid var(--line); }
+.rows .row:first-child { border-top: 0; padding-top: 0; }
+.rows h3 { font-size: 40px; }
+.rows p { color: var(--mute); margin-top: 4px; font-size: 18px; }
+.venue { margin-top: 56px; max-width: 34em; }
+.venue h3 { font-size: 36px; }
+.venue p { color: var(--mute); margin-top: 8px; margin-bottom: 24px; }
+
+/* rsvp */
+.rsvp-lead { color: var(--mute); margin-top: 16px; max-width: 30em; }
+form { margin-top: 40px; max-width: 520px; }
+.f { margin-bottom: 24px; }
+.f > label, .f > .lab { display: block; font-size: 14px; color: var(--mute); margin-bottom: 8px; }
+input[type="text"], select, textarea {
+  display: block; width: 100%; padding: 13px 14px; border: 1px solid var(--mute); border-radius: 0; background: transparent; color: var(--chalk);
+  font-family: var(--body); font-size: 16px; line-height: 1.4; -webkit-appearance: none; appearance: none;
+}
+select { background-image: none; }
+select option { color: #111; }
+textarea { resize: vertical; min-height: 110px; }
+::-webkit-input-placeholder { color: #7f9a90; }
+::-moz-placeholder { color: #7f9a90; opacity: 1; }
+:-ms-input-placeholder { color: #7f9a90; }
+::placeholder { color: #7f9a90; opacity: 1; }
+.opts { display: flex; }
+.opt { position: relative; display: block; width: 50%; }
+.opt:first-child { margin-right: 12px; }
+.opt input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.opt span { display: block; padding: 13px 10px; border: 1px solid var(--mute); text-align: center; cursor: pointer; font-size: 15px; }
+.opt input:checked + span { background: var(--songket); border-color: var(--songket); color: var(--ink); font-weight: 600; }
+.opt input:focus + span { outline: 2px solid var(--songket); outline-offset: 3px; }
+.hint { font-size: 14px; color: var(--mute); margin-top: 14px; }
+#err { color: #ffc2b5; font-size: 15px; margin-top: 12px; }
+
+/* ucapan */
+.wishes { margin-top: 48px; max-width: 36em; }
+.wish { margin-bottom: 36px; }
+.wish p { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 25px; line-height: 1.4; }
+.wish b { display: block; margin-top: 8px; font-size: 15px; font-weight: 600; color: var(--songket); }
+
+/* hadiah */
+.hadiah { background: var(--ink2); }
+.gift-lead { color: var(--mute); margin-top: 16px; max-width: 30em; }
+.gifts { margin-top: 40px; max-width: 560px; }
+.gift { display: flex; align-items: center; padding-top: 20px; padding-bottom: 20px; border-top: 1px solid var(--line); }
+.gift:first-child { border-top: 0; padding-top: 0; }
+.tag { flex: none; width: 56px; height: 56px; margin-right: 16px; border: 1px solid var(--songket); color: var(--songket); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; letter-spacing: 0.06em; }
+.gift-info { flex: 1; min-width: 0; }
+.gift-info small { display: block; font-size: 13px; color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; }
+.gift-info strong { display: block; font-size: 20px; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; word-wrap: break-word; overflow-wrap: break-word; }
+.gift-info em { display: block; font-style: normal; font-size: 14px; color: var(--mute); }
+.gift .btn { flex: none; margin-left: 12px; padding: 12px 16px 11px; font-size: 13px; }
+
+/* penutup */
+.close h2 { max-width: 14em; }
+.close .lead { color: var(--mute); margin-top: 20px; max-width: 30em; }
+.close .sign { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 72px; font-size: clamp(60px, 18vw, 150px); line-height: 1.1; margin-top: 56px; padding-bottom: 8px; color: var(--songket); }
+.links { margin-top: 32px; }
+.links a { display: inline-block; margin-right: 24px; margin-bottom: 8px; }
+.credit { margin-top: 64px; font-size: 13px; color: var(--mute); }
+
+/* bottom nav */
+.nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--ink); border-top: 1px solid var(--line); padding: 12px 8px 12px; padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)); display: flex; justify-content: space-around; }
+.nav a { color: var(--chalk); text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 6px; }
+.nav a:hover { color: var(--songket); }
+.anim .nav { -webkit-transform: translateY(100%); transform: translateY(100%); -webkit-transition: -webkit-transform 0.4s; transition: transform 0.4s; }
+.anim .nav.show { -webkit-transform: none; transform: none; }
+</style>
+
+<header class="hero" id="top">
+  <div class="wrap hero-in">
+    <p class="h-fade hero-top">The Wedding of</p>
+    <h1 class="hero-names" aria-label="Tiwi dan Fatah">
+      <span class="mask"><span class="h-name n1">Tiwi</span></span>
+      <span class="h-amp" aria-hidden="true">&amp;</span>
+      <span class="mask"><span class="h-name n2">Fatah</span></span>
+    </h1>
+    <p class="h-fade hero-sub">Sabtu, 24 Oktober 2026<br>Rumah Adat Melayu, Pontianak</p>
+    <div class="h-fade hero-guest">Yth. Bapak/Ibu/Saudara/i<strong id="guest">Tamu Undangan</strong></div>
+    <a class="btn h-fade" href="#ayat">Buka undangan</a>
+  </div>
+  <div class="rebung" id="band" aria-hidden="true"></div>
+</header>
+
+<main>
+  <section class="sec ayat" id="ayat">
+    <div class="wrap narrow">
+      <div class="band rv" aria-hidden="true"></div>
+      <h2 class="rv">Ar-Rum : 21</h2>
+      <blockquote class="rv">&ldquo;Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.&rdquo;</blockquote>
+      <div class="band rv" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="mempelai">
+    <div class="wrap">
+      <h2 class="rv">Mempelai</h2>
+      <div class="couple-grid">
+        <article class="person p1 rv">
+          <!-- Foto mempelai wanita: ganti isi .arch-in dengan gambar -->
+          <div class="arch" aria-hidden="true"><div class="arch-in"><span>T</span></div><div class="band"></div></div>
+          <h3>Tiwi</h3>
+          <p class="full">Razkia Ananda Pratiwi, S.M</p>
+          <p class="parents">Putri sulung dari Bapak Bahtiarudin, S.E &amp; Ibu Farina, S.H</p>
+          <a class="ig" href="https://instagram.com/raatiwi" target="_blank" rel="noopener">@raatiwi</a>
+        </article>
+        <article class="person p2 rv">
+          <!-- Foto mempelai pria: ganti isi .arch-in dengan gambar -->
+          <div class="arch" aria-hidden="true"><div class="arch-in"><span>F</span></div><div class="band"></div></div>
+          <h3>Fatah</h3>
+          <p class="full">Ners. Nur Alfatah, S.Kep</p>
+          <p class="parents">Putra bungsu dari Bapak H. Nur Achmadi, S.Pd &amp; Ibu Hj. Farida (Almh)</p>
+          <a class="ig" href="https://instagram.com/nalafatah" target="_blank" rel="noopener">@nalafatah</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec kisah" id="kisah">
+    <div class="wrap">
+      <h2 class="rv">Kisah pertemuan</h2>
+      <div class="tl">
+        <div class="tl-track" aria-hidden="true"></div>
+        <div class="tl-fill" aria-hidden="true"></div>
+        <div class="tl-i"><span class="tl-dot" aria-hidden="true"></span>
+          <h3>2014</h3>
+          <p>Semesta mempertemukan kami di sekolah yang sama. Kala itu, kami hanya kakak adik tingkat yang tidak saling kenal. Sering berpapasan, namun tak ada sapaan dan tak saling tahu nama.</p></div>
+        <div class="tl-i"><span class="tl-dot" aria-hidden="true"></span>
+          <h3>2020 - 2024</h3>
+          <p>Kami mulai saling mengikuti, namun tak ada interaksi. Saling menjadi penonton kisah masing-masing. Tahun demi tahun terlewati, akhirnya kami berdua saling jatuh hati.</p></div>
+        <div class="tl-i"><span class="tl-dot" aria-hidden="true"></span>
+          <h3>4 April 2026</h3>
+          <p>Setelah dua tahun melabuhi hati, tibalah masa ketika cincin pengikat melingkar di jari manis. Aku dan kamu, menuju kita.</p></div>
+        <div class="tl-i"><span class="tl-dot" aria-hidden="true"></span>
+          <h3>24 Oktober 2026</h3>
+          <p>Kini, aku dan kamu, menjadi Kita. Seterusnya, selamanya.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec hitung" id="hitung">
+    <div class="wrap">
+      <h2 class="rv">Sebentar lagi hari bahagia kami</h2>
+      <div class="units rv" role="timer" aria-live="off">
+        <div class="unit"><b id="cd-d">00</b><span>Hari</span></div>
+        <div class="unit"><b id="cd-h">00</b><span>Jam</span></div>
+        <div class="unit"><b id="cd-m">00</b><span>Menit</span></div>
+        <div class="unit"><b id="cd-s">00</b><span>Detik</span></div>
+      </div>
+      <a class="btn rv" target="_blank" rel="noopener" href="https://www.google.com/calendar/render?action=TEMPLATE&amp;text=The+Wedding+of+Tiwi+%26+Fatah&amp;dates=20261024T010000Z/20261024T110000Z&amp;location=Kompleks+Rumah+Adat+Melayu%2C+Jl.+Sutan+Syahrir%2C+Sungai+Bangkong%2C+Pontianak+Kota%2C+Kalimantan+Barat+78113">Simpan tanggal</a>
+    </div>
+  </section>
+
+  <section class="sec acara" id="acara">
+    <div class="wrap">
+      <div class="acara-grid">
+        <div class="bigdate rv"><b>24</b><span>Sabtu, Oktober 2026</span></div>
+        <div class="rows rv">
+          <div class="row"><h3>Akad</h3><p>08.00 WIB sampai selesai</p></div>
+          <div class="row"><h3>Resepsi</h3><p>14.00 - 18.00 WIB</p></div>
+        </div>
+      </div>
+      <div class="venue rv">
+        <h3>Rumah Adat Melayu</h3>
+        <p>Kompleks Rumah Adat Melayu, Jl. Sutan Syahrir, Sungai Bangkong, Kec. Pontianak Kota, Kota Pontianak, Kalimantan Barat 78113</p>
+        <a class="btn" target="_blank" rel="noopener" href="https://maps.app.goo.gl/5o1Yo3NDNY3ZNk6p9?g_st=ic">Buka Google Maps</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="rsvp">
+    <div class="wrap">
+      <h2 class="rv">Konfirmasi kehadiran</h2>
+      <p class="rsvp-lead rv">Mohon konfirmasi kehadiran Anda, lalu sertakan ucapan dan doa untuk kami.</p>
+      <form id="rsvp-form" class="rv" novalidate>
+        <div class="f"><label for="f-name">Nama</label><input type="text" id="f-name" name="nama" autocomplete="name" placeholder="Nama tamu"></div>
+        <div class="f"><span class="lab" id="lab-att">Kehadiran</span>
+          <div class="opts" role="radiogroup" aria-labelledby="lab-att">
+            <label class="opt"><input type="radio" name="hadir" value="Hadir" id="f-yes"><span>Hadir</span></label>
+            <label class="opt"><input type="radio" name="hadir" value="Tidak hadir" id="f-no"><span>Tidak hadir</span></label>
+          </div></div>
+        <div class="f" id="g-wrap" hidden><label for="f-count">Jumlah tamu</label>
+          <select id="f-count" name="jumlah"><option value="1">1 orang</option><option value="2">2 orang</option></select></div>
+        <div class="f"><label for="f-wish">Ucapan</label><textarea id="f-wish" name="ucapan" placeholder="Tuliskan ucapan dan doa"></textarea></div>
+        <a class="btn solid" id="wa" target="_blank" rel="noopener" href="https://wa.me/6282152109219">Kirim lewat WhatsApp</a>
+        <p class="hint">Pesan terbuka di WhatsApp ke Tiwi. Ketuk kirim di sana.</p>
+        <p id="err" role="alert" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="sec" id="ucapan" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="rv">Ucapan dan doa</h2>
+      <div class="wishes">
+        <div class="wish rv"><p>Lancar luncur sampai hari H Razkia dan calon suami, semoga bahagia selalu ya.</p><b>Putri Rismawati &amp; Calon Suami</b></div>
+        <div class="wish rv"><p>Semoga dilancarkan ya Tiwi.</p><b>Wardha Fitriani &amp; Partner</b></div>
+        <div class="wish rv"><p>Tiwi sayang, semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Jaga kesehatan sampai hari H, lancar terus persiapannya.</p><b>Mega Dwi Aprianti &amp; Suami</b></div>
+        <div class="wish rv"><p>Yeay menikah! Bismillah forever and ever, lancar dan dilimpahkan kebahagiaan dalam rumah tangga, aamiin.</p><b>Fivi &amp; Partner</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec hadiah" id="hadiah">
+    <div class="wrap">
+      <h2 class="rv">Hadiah</h2>
+      <p class="gift-lead rv">Kehadiran Anda adalah hadiah terbaik bagi kami. Jika ingin memberi tanda kasih, kami menerimanya dengan penuh syukur.</p>
+      <div class="gifts rv">
+        <div class="gift"><div class="tag">BCA</div><div class="gift-info"><small>Razkia Ananda Pratiwi</small><strong>5165354220</strong></div><button type="button" class="btn" data-copy="5165354220">Salin</button></div>
+        <div class="gift"><div class="tag">BRI</div><div class="gift-info"><small>Nur Alfatah</small><strong>032901114608506</strong></div><button type="button" class="btn" data-copy="032901114608506">Salin</button></div>
+        <div class="gift"><div class="tag">Kado</div><div class="gift-info"><small>Razkia Ananda Pratiwi</small><strong>082152109219</strong><em>Konfirmasi alamat lewat WhatsApp ke Tiwi</em></div><button type="button" class="btn" data-copy="082152109219">Salin</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec close" id="penutup">
+    <div class="wrap">
+      <h2 class="rv">Terima kasih atas kehadiran dan doa restu Anda</h2>
+      <p class="lead rv">Kami menantikan hari istimewa ini bersama Anda. Kehadiran Anda membuat hari kami semakin bermakna.</p>
+      <p class="sign rv">Tiwi &amp; Fatah</p>
+      <div class="links rv">
+        <a href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE3ODgyNzI0NjE1NDU3MjY4?story_media_id=4001809449246742448&amp;stkn=MzMyZWxnMzVodnJr" target="_blank" rel="noopener">Gunakan frame Instagram</a>
+        <a href="https://youtu.be/mrwnXdyDvig" target="_blank" rel="noopener">Tonton video kami</a>
+      </div>
+      <p class="credit">&copy; 2026 &eacute;nvelope. Undangan digital.</p>
+    </div>
+  </section>
+</main>
+
+<nav class="nav" id="nav" aria-label="Navigasi undangan">
+  <a href="#mempelai">Mempelai</a>
+  <a href="#kisah">Kisah</a>
+  <a href="#acara">Acara</a>
+  <a href="#rsvp">RSVP</a>
+  <a href="#hadiah">Hadiah</a>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  var d = document;
+  function $(id) { return d.getElementById(id); }
+
+  /* guest name from #Nama-Tamu (plain anchor only) */
+  try {
+    var h = decodeURIComponent((location.hash || "").slice(1));
+    if (h && !/^(top|ayat|mempelai|kisah|hitung|acara|rsvp|ucapan|hadiah|penutup)$/.test(h)) {
+      var nm = h.replace(/[-_.]+/g, " ");
+      $("guest").textContent = nm;
+      $("f-name").value = nm;
+    }
+  } catch (e) {}
+
+  /* countdown to the reception, 24 Oct 2026 14:00 WIB */
+  var target = 1792825200 * 1000;
+  function pad(n) { return n < 10 ? "0" + n : "" + n; }
+  function tick() {
+    var s = Math.max(0, Math.floor((target - new Date().getTime()) / 1000));
+    $("cd-d").textContent = pad(Math.floor(s / 86400));
+    $("cd-h").textContent = pad(Math.floor(s % 86400 / 3600));
+    $("cd-m").textContent = pad(Math.floor(s % 3600 / 60));
+    $("cd-s").textContent = pad(s % 60);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  /* copy buttons, with fallback for old browsers */
+  d.addEventListener("click", function (ev) {
+    var btn = ev.target;
+    while (btn && btn !== d && !(btn.getAttribute && btn.getAttribute("data-copy"))) { btn = btn.parentNode; }
+    if (!btn || btn === d) { return; }
+    var txt = btn.getAttribute("data-copy");
+    function ok() { btn.textContent = "Tersalin"; setTimeout(function () { btn.textContent = "Salin"; }, 1800); }
+    function fallback() {
+      var t = d.createElement("textarea");
+      t.value = txt; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.top = "0"; t.style.opacity = "0";
+      d.body.appendChild(t); t.select(); t.setSelectionRange(0, 999);
+      try { if (d.execCommand("copy")) { ok(); } } catch (e) {}
+      d.body.removeChild(t);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(txt).then(ok, fallback); } else { fallback(); }
+  });
+
+  /* RSVP: builds a WhatsApp message to Tiwi */
+  var wa = $("wa"), err = $("err"), nameEl = $("f-name"), wishEl = $("f-wish"), cntEl = $("f-count"), gWrap = $("g-wrap");
+  function att() { return $("f-yes").checked ? "Hadir" : ($("f-no").checked ? "Tidak hadir" : ""); }
+  function build() {
+    var a = att();
+    gWrap.hidden = a !== "Hadir";
+    var msg = "Halo Tiwi dan Fatah, saya " + nameEl.value.replace(/^\s+|\s+$/g, "") + ".\nKonfirmasi kehadiran: " + a;
+    if (a === "Hadir") { msg += " (" + cntEl.value + " orang)"; }
+    var w = wishEl.value.replace(/^\s+|\s+$/g, "");
+    if (w) { msg += "\nUcapan: " + w; }
+    wa.href = "https://wa.me/6282152109219?text=" + encodeURIComponent(msg);
+  }
+  var fields = [nameEl, wishEl, cntEl, $("f-yes"), $("f-no")];
+  for (var i = 0; i < fields.length; i++) {
+    fields[i].addEventListener("input", build);
+    fields[i].addEventListener("change", build);
+  }
+  wa.addEventListener("click", function (ev) {
+    build();
+    var miss = "";
+    if (!nameEl.value.replace(/\s/g, "")) { miss = "Isi nama Anda dulu."; }
+    else if (!att()) { miss = "Pilih hadir atau tidak hadir."; }
+    if (miss) { ev.preventDefault(); err.textContent = miss; err.hidden = false; } else { err.hidden = true; }
+  });
+  $("rsvp-form").addEventListener("submit", function (ev) { ev.preventDefault(); });
+  build();
+
+  /* ---------- GSAP (skipped if blocked, offline, or reduced motion) ---------- */
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!window.gsap || !window.ScrollTrigger) { return; }
+  var mv = reduce ? 0 : 1; /* reduced motion: fades only, no movement */
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+  d.documentElement.className += " anim";
+
+  /* hero band: one rebung triangle per 44px */
+  var band = $("band"), n = Math.ceil(window.innerWidth / 44) + 2, k;
+  for (k = 0; k < n; k++) { band.appendChild(d.createElement("i")); }
+
+  /* Hero intro: names rise from masks, the triangles grow, the rest fades in. Draws the eye to the couple first. */
+  var heroTl = gsap.timeline({ defaults: { ease: "power3.out" } })
+    .from(".rebung i", { scaleY: mv ? 0 : 1, autoAlpha: mv ? 1 : 0, transformOrigin: "50% 100%", duration: 0.7, stagger: { each: 0.03, from: "center" } }, 0)
+    .from(".h-name", { yPercent: mv ? 110 : 0, autoAlpha: mv ? 1 : 0, duration: 1.1, stagger: 0.2 }, 0.2)
+    .from(".h-amp", { scale: mv ? 0.5 : 1, autoAlpha: 0, duration: 0.9, ease: "back.out(1.6)" }, 0.7)
+    .from(".h-fade", { y: 16 * mv, autoAlpha: 0, duration: 0.8, stagger: 0.12 }, 0.9);
+
+  /* Hero plays again when you scroll back up to it */
+  if (window.IntersectionObserver) {
+    var left = false;
+    new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) { left = true; } else if (left) { left = false; heroTl.restart(); }
+    }, { threshold: 0.3 }).observe($("top"));
+  }
+
+  /* Section choreography: every section replays its entrance each time it comes into view, in both directions.
+     Each element type moves its own way: bands wipe in, cards slide from their side, numbers scale up. */
+  function each(sel, fn) { var l = d.querySelectorAll(sel), j; for (j = 0; j < l.length; j++) { fn(l[j]); } }
+  each(".units, .rows, .gifts, #rsvp-form", function (el) { el.className = el.className.replace(/\brv\b/, ""); });
+  each(".unit, .row, .gift, .f, #wa, .hint, .tl-i", function (el) { el.className += " rv"; });
+  function tag(sel, a) { each(sel, function (el) { el.setAttribute("data-a", a); }); }
+  tag(".band", "wipe");
+  tag(".p1, .tl-i, .gift, .wish:nth-child(odd)", "left");
+  tag(".p2, .row, .wish:nth-child(even)", "right");
+  tag(".unit, .bigdate, .sign", "scale");
+  var T = { up: [0, 28, 1, 1], left: [-50, 0, 1, 1], right: [50, 0, 1, 1], scale: [0, 24, 0.85, 1], wipe: [0, 0, 1, 0] };
+  function hv(el, i) { return T[el.getAttribute("data-a") || "up"][i]; }
+  function hide(els) {
+    gsap.set(els, {
+      autoAlpha: 0,
+      x: function (i, el) { return hv(el, 0) * mv; },
+      y: function (i, el) { return hv(el, 1) * mv; },
+      scale: function (i, el) { return mv ? hv(el, 2) : 1; },
+      scaleX: function (i, el) { return mv ? hv(el, 3) : 1; },
+      transformOrigin: function (i, el) { return el.getAttribute("data-a") === "wipe" ? "0% 50%" : "50% 50%"; }
+    });
+  }
+  function show(els) {
+    gsap.to(els, { autoAlpha: 1, x: 0, y: 0, scale: 1, scaleX: 1, duration: 0.9, stagger: 0.12, ease: "power3.out", overwrite: true });
+  }
+  var rv = gsap.utils.toArray(".rv");
+  /* IntersectionObserver, not ScrollTrigger: it measures against the real screen even when the page sits in an auto-height frame.
+     Without it (very old browsers) nothing is hidden, so content always shows. */
+  if (window.IntersectionObserver) {
+    hide(rv);
+    var io = new IntersectionObserver(function (es) {
+      var on = [], off = [], q;
+      for (q = 0; q < es.length; q++) { (es[q].isIntersecting ? on : off).push(es[q].target); }
+      if (off.length) { hide(off); }
+      if (on.length) { show(on); }
+    }, { threshold: 0.1 });
+    for (k = 0; k < rv.length; k++) { io.observe(rv[k]); }
+  }
+
+  /* Timeline: the line draws as the story is read; each date lights up when reached */
+  if (mv) {
+    gsap.fromTo(".tl-fill", { scaleY: 0, transformOrigin: "50% 0" }, {
+      scaleY: 1, ease: "none",
+      scrollTrigger: { trigger: ".tl", start: "top 65%", end: "bottom 65%", scrub: true }
+    });
+  }
+  var items = gsap.utils.toArray(".tl-i");
+  for (k = 0; k < items.length; k++) {
+    ScrollTrigger.create({ trigger: items[k], start: "top 65%", toggleClass: { targets: items[k], className: "on" } });
+  }
+
+  /* Menu appears after the hero so it never covers the opening */
+  ScrollTrigger.create({ trigger: "#ayat", start: "top 80%", end: "max", toggleClass: { targets: "#nav", className: "show" } });
+
+  window.addEventListener("load", function () { ScrollTrigger.refresh(); });
+  if (d.fonts && d.fonts.ready) { d.fonts.ready.then(function () { ScrollTrigger.refresh(); }); }
+})();
+</script>
+
+</body></html>
