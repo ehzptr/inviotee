@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta name="color-scheme" content="light only">
+    <meta name="theme-color" content="#F3E1CF">
     <meta name="format-detection" content="telephone=no">
     <meta name="google" content="notranslate">
     <title>Wedding - Chinese Java</title>
@@ -13,398 +14,481 @@
     <meta property="og:title" content="Wedding - Chinese Java">
     <meta property="og:description" content="Tema undangan pernikahan adat Cina kombinasi Jawa">
     <meta property="og:image" content="https://satumomen.com/themes/chinese-java/chinese-java.webp">
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23573E28'/%3E%3Ctext x='16' y='23' font-size='21' text-anchor='middle' fill='%23D1A046' font-family='serif' font-style='italic'%3E%26%3C/text%3E%3C/svg%3E">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400..700;1,400..700&family=Grenze+Gotisch:wght@300;700&family=Parisienne&display=swap">
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Outfit:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/fill/style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style type="text/tailwindcss">
         @theme {
             --color-cream: #F3E1CF;
+            --color-paper: #FBF4EA;
             --color-ink: #573E28;
+            --color-muted: #6B5440;    /* 5.5:1 on cream; replaces ink/60 (3.4:1) */
             --color-gold: #D1A046;
-            --color-gold-ink: #7D5A10; /* gold darkened for text: 4.9:1 on cream, #D1A046 is 1.9:1 */
-            --color-menu: #8F6A30;     /* was #AF854A: white labels were 3.3:1, now 4.9:1 */
-            --font-body: "Baskervville", serif;
-            --font-gothic: "Grenze Gotisch", cursive;
-            --font-script: "Parisienne", cursive;
+            --color-gold-ink: #7D5A10; /* gold for text: 4.9:1 on cream */
+            --font-sans: "Outfit", sans-serif;
+            --font-display: "Cormorant Garamond", serif;
         }
-    @layer base {
-        html, body { height: 100%; overflow: hidden; background: var(--color-cream); }
-        body { font-family: var(--font-body); color: var(--color-ink); -webkit-tap-highlight-color: transparent; }
-        ::selection { background: color-mix(in srgb, var(--color-gold) 45%, transparent); }
-        :focus-visible { outline: 2px solid var(--color-ink); outline-offset: 2px; }
-        dialog::backdrop { background: rgb(0 0 0 / .6); }
-        button { cursor: pointer; }
-    }
-    @utility btn { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-ink px-4 py-2 text-sm text-white transition-transform active:scale-95; }
-    @utility field { @apply w-full rounded-lg border border-ink/25 bg-white px-3 py-2 text-sm text-ink disabled:bg-ink/5; }
-</style>
+        /* z scale: grain 0 · frames 1 · slides 10 · tools 20 · loader 50 */
+        @layer base {
+            html, body { height: 100%; overflow: hidden; background: var(--color-cream); }
+            body { font-family: var(--font-sans); color: var(--color-ink); -webkit-tap-highlight-color: transparent; }
+            h1, h2, h3, blockquote { text-wrap: balance; }
+            p { text-wrap: pretty; }
+            ::selection { background: color-mix(in srgb, var(--color-gold) 45%, transparent); }
+            :focus-visible { outline: 2px solid #7D5A10; outline-offset: 2px; }
+            dialog::backdrop { background: rgb(40 26 14 / .6); }
+            button { cursor: pointer; }
+            .field:user-invalid { border-color: #a3402a; }
+        }
+        @utility btn { @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-ink px-6 text-sm font-medium text-paper shadow-[0_10px_24px_-10px_rgb(87_62_40/.55)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#6a4c31] active:translate-y-0 active:scale-[.97] disabled:opacity-60; }
+        @utility btn-ghost { @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-ink/30 px-5 text-sm font-medium text-ink transition duration-200 hover:bg-ink/5 active:scale-[.97]; }
+        @utility tlink { @apply inline-flex min-h-8 items-center gap-1.5 text-sm font-medium text-gold-ink underline decoration-gold/60 underline-offset-4 transition-colors hover:text-ink; }
+        @utility field { @apply w-full rounded-xl border border-ink/25 bg-white px-3.5 py-2.5 text-sm text-ink transition-colors focus:border-gold-ink disabled:bg-ink/5 disabled:text-muted; }
+        @utility grain { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .34 0 0 0 0 .24 0 0 0 0 .16 0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+
+        /* solid floating surface: readable over the patterned background */
+        @utility float { @apply bg-paper ring-1 ring-ink/25 shadow-[0_8px_24px_-8px_rgb(87_62_40/.5)]; }
+        @utility nav-chip { @apply relative z-10 flex h-14 w-full flex-col items-center justify-center gap-0.5 text-xs font-medium text-muted transition-colors duration-300 aria-[current=true]:text-paper; }
+        @utility act-btn { @apply grid size-12 place-items-center rounded-full bg-ink/10 text-ink transition duration-200 hover:bg-ink/15 active:scale-95 aria-pressed:bg-ink aria-pressed:text-paper; }
+    </style>
 </head>
 
 <body>
     <!-- loader -->
     <div id="loader" class="fixed inset-0 z-50 grid place-items-center bg-cream" style="background:#F3E1CF">
-        <span class="size-8 animate-spin border-4 border-gold"></span>
+        <div class="text-center">
+            <p class="animate-pulse font-display text-4xl italic text-ink">Faisal &amp; Noor</p>
+            <span class="mx-auto mt-4 block h-px w-24 bg-gold"></span>
+        </div>
     </div>
 
-    <audio id="music" loop preload="auto" src="https://assets.satumomen.com/musics/InstrumentalLaguJawa.mp3"></audio>
+    <audio id="music" loop preload="none" src="https://assets.satumomen.com/musics/InstrumentalLaguJawa.mp3"></audio>
 
     <!-- viewport: stage is a fixed 414px design canvas, scaled to fit by JS -->
     <div id="viewport" class="fixed inset-0 flex justify-center overflow-hidden">
         <main id="stage"
-            class="relative w-[414px] shrink-0 origin-top overflow-hidden bg-cream bg-[length:100%_100%] bg-center bg-no-repeat"
+            class="relative w-[414px] shrink-0 origin-top overflow-hidden bg-cream bg-cover bg-center bg-no-repeat"
             style="background-image:url(https://satumomen.com/themes/chinese-java/bg.webp);height:736px">
 
+            <div aria-hidden="true"
+                class="grain pointer-events-none absolute inset-0 z-0 opacity-[.07] mix-blend-multiply"></div>
+
             <!-- corner frames -->
-            <div id="frames" class="pointer-events-none absolute inset-0">
+            <div id="frames" class="pointer-events-none absolute inset-0 z-[1]">
                 <img data-f="tl" src="https://satumomen.com/themes/chinese-java/tl.webp" alt=""
-                    class="absolute left-0 top-0 w-1/2">
+                    class="will-change-transform absolute left-0 top-0 w-1/2">
                 <img data-f="tr" src="https://satumomen.com/themes/chinese-java/tr.webp" alt=""
-                    class="absolute right-0 top-0 w-1/2">
+                    class="will-change-transform absolute right-0 top-0 w-1/2">
                 <img data-f="bl" src="https://satumomen.com/themes/chinese-java/bl.webp" alt=""
-                    class="absolute bottom-0 left-0 w-1/2">
+                    class="will-change-transform absolute bottom-0 left-0 w-1/2">
                 <img data-f="br" src="https://satumomen.com/themes/chinese-java/br.webp" alt=""
-                    class="absolute bottom-0 right-0 w-1/2">
+                    class="will-change-transform absolute bottom-0 right-0 w-1/2">
             </div>
 
             <!-- slides -->
-            <div id="slides" class="absolute inset-x-0 top-0 bottom-20">
+            <div id="slides" class="absolute inset-0 z-10">
 
-                <!-- 0 cover -->
-                <section class="slide absolute inset-0 flex flex-col items-center justify-center px-[30px] text-center"
-                    aria-label="Opening">
+                <!-- 0 sampul -->
+                <section
+                    class="slide absolute inset-0 flex flex-col items-center justify-center px-[34px] py-[72px] text-center"
+                    aria-label="Sampul">
                     <img data-in="zoom"
                         src="https://assets.satumomen.com/images/galleries/880986-gallery-x5Ha0jUXq4.png"
-                        alt="Logo pernikahan" class="mb-5 h-[180px] w-full object-contain">
-                    <div data-in="down" class="mb-4">
-                        <p class="text-[15px]">THE WEDDING OF</p>
-                        <h1 class="my-3 text-balance text-[35px] font-bold leading-tight tracking-[.25em] text-ink">DIAN
-                            &amp; FEBRI</h1>
-                        <p class="text-[15px]">19 . 08 . 2026</p>
+                        alt="Logo pernikahan" class="mb-3 h-[140px] w-full object-contain">
+                    <div data-in="down" class="w-full">
+                        <p class="font-display text-lg italic text-muted">Undangan pernikahan</p>
+                        <h1
+                            class="my-3 flex w-full flex-col font-display text-[64px] font-semibold italic leading-[.9] tracking-tight text-ink">
+                            <span class="self-start">Faisal</span>
+                            <span class="self-center text-[36px] font-medium text-gold-ink">&amp;</span>
+                            <span class="self-end">Noor</span>
+                        </h1>
+                        <p class="text-sm font-medium tabular-nums">Sabtu, 5 Desember 2026</p>
                     </div>
-                    <div data-in="up" class="max-w-[300px]">
-                        <p class="mb-1 text-sm">Kepada Yth;<br>Bapak/Ibu/Saudara/i</p>
-                        <p data-guest class="mb-4 text-base font-bold">Nama Tamu</p>
-                        <button id="btnOpen" class="btn">Open Invitation</button>
+                    <div data-in="up" class="mt-6 max-w-[300px]">
+                        <p class="text-sm text-muted">Kepada Yth.<br>Bapak/Ibu/Saudara/i</p>
+                        <p data-guest class="mb-5 mt-1 font-display text-[28px] font-semibold leading-tight">Nama Tamu
+                        </p>
+                        <button id="btnOpen" class="btn">Buka undangan</button>
                     </div>
                 </section>
 
-                <!-- 1 quote -->
+                <!-- 1 ayat -->
                 <section
-                    class="slide absolute inset-0 flex flex-col items-center justify-center px-[30px] pb-[60px] text-center"
-                    aria-label="Surah">
-                    <img data-in="zoom"
-                        src="https://assets.satumomen.com/images/galleries/880986-gallery-x5Ha0jUXq4.png"
-                        alt="Logo pernikahan" class="mb-5 h-[180px] w-full object-contain">
-                    <div data-in="down" class="mb-4 w-full">
-                        <p class="text-sm">THE WEDDING OF</p>
-                        <p class="my-2 text-[38px] font-bold leading-tight text-gold-ink">Bride &amp; Groom</p>
-                        <p class="text-sm">30.11.2025</p>
-                    </div>
-                    <div data-in="down" class="text-black">
-                        <p class="mb-3 text-sm">"Dan segala sesuatu Kami ciptakan<br>berpasang-pasangan agar
-                            kamu<br>mengingat (kebesaran Allah)"</p>
-                        <p class="text-xs italic">Q.S Adz-Dzariyat ayat 49</p>
-                    </div>
+                    class="slide absolute inset-0 flex flex-col items-start justify-center px-[40px] py-[72px] text-left"
+                    aria-label="Ayat">
+                    <span data-in="down" aria-hidden="true"
+                        class="font-display text-[96px] leading-[.6] text-gold/70">&ldquo;</span>
+                    <blockquote data-in="up">
+                        <p class="font-display text-[30px] italic leading-snug">Dan segala sesuatu Kami ciptakan
+                            berpasang-pasangan agar kamu mengingat (kebesaran Allah).</p>
+                        <footer class="mt-5 text-sm text-muted">Q.S. Adz-Dzariyat ayat 49</footer>
+                    </blockquote>
                 </section>
 
                 <!-- 2 mempelai -->
                 <section
-                    class="slide absolute inset-0 flex flex-col items-center justify-center px-[30px] pb-[70px] text-center"
+                    class="slide absolute inset-0 flex flex-col items-start justify-center px-[34px] py-[72px] text-left"
                     aria-label="Mempelai">
-                    <p data-in="down" class="mb-3 text-sm">Tanpa mengurangi rasa hormat kami bermaksud mengundang
-                        Bapak/Ibu/Saudara/i pada acara resepsi pernikahan kami:</p>
-                    <div data-in="up" class="mb-4">
-                        <h2 class="mb-2 font-gothic text-[28.8px] text-gold-ink">Akhmad Faisal</h2>
-                        <p class="mb-2">Putra Pertama Bapak H. Amin<br>dan Ibu Hj. Salamah</p>
-                        <a href="https://instagram.com/satumomen_com" target="_blank" rel="noreferrer noopener"
-                            class="btn py-1! font-sans text-xs">@noor_hidayati</a>
+                    <p data-in="down" class="mb-6 text-sm text-muted">Tanpa mengurangi rasa hormat, kami bermaksud
+                        mengundang Bapak/Ibu/Saudara/i pada acara resepsi pernikahan kami:</p>
+                    <div data-in="up" class="mb-2">
+                        <h2 class="mb-2 font-display text-[40px] font-semibold italic leading-none text-gold-ink">Akhmad
+                            Faisal</h2>
+                        <p class="mb-2 text-sm">Putra pertama Bapak H. Amin<br>dan Ibu Hj. Salamah</p>
+                        <a href="https://instagram.com/akhmadfaisal" target="_blank" rel="noreferrer noopener"
+                            class="tlink"><i class="ph-fill ph-instagram-logo text-lg"></i>@akhmadfaisal</a>
                     </div>
-                    <div data-in="up">
-                        <h2 class="mb-2 font-gothic text-[28.8px] text-gold-ink">Noor Hidayati</h2>
-                        <p class="mb-2">Putri Ke 2 Bapak Sulaiman Hakim<br>dan Ibu Widia Astuti</p>
-                        <a href="https://instagram.com/satumomen_com" target="_blank" rel="noreferrer noopener"
-                            class="btn py-1! font-sans text-xs">@noor_hidayati</a>
+                    <span data-in="up" aria-hidden="true"
+                        class="self-center font-display text-[44px] italic leading-none text-gold">&amp;</span>
+                    <div data-in="up" class="mt-2 self-end text-right">
+                        <h2 class="mb-2 font-display text-[40px] font-semibold italic leading-none text-gold-ink">Noor
+                            Hidayati</h2>
+                        <p class="mb-2 text-sm">Putri kedua Bapak Sulaiman Hakim<br>dan Ibu Widia Astuti</p>
+                        <a href="https://instagram.com/noor_hidayati" target="_blank" rel="noreferrer noopener"
+                            class="tlink"><i class="ph-fill ph-instagram-logo text-lg"></i>@noor_hidayati</a>
                     </div>
                 </section>
 
-                <!-- 3 waktu acara -->
-                <section class="slide absolute inset-0 flex flex-col items-center justify-center px-[30px] text-center"
-                    aria-label="Waktu Acara">
-                    <img data-in="down"
-                        src="https://assets.satumomen.com/images/galleries/880986-gallery-x5Ha0jUXq4.png"
-                        alt="Logo pernikahan" class="mb-3 h-[100px] w-[158px] object-contain">
-                    <div data-in="down" class="mb-3">
-                        <h2 class="font-gothic text-[30px] leading-none text-gold-ink">Akad Nikah</h2>
-                        <div class="mt-2 flex items-center justify-center gap-2.5 leading-none">
-                            <span class="text-[50px]">02</span>
-                            <span class="text-left text-xl">SABTU<br>DES 2023</span>
-                            <span class="h-[42px] w-0.5 bg-gold"></span>
-                            <span class="text-left text-xl">08.00 WIB<br>s.d SELESAI</span>
+                <!-- 3 acara -->
+                <section
+                    class="slide absolute inset-0 flex flex-col items-start justify-center px-[34px] py-[72px] text-left"
+                    aria-label="Acara">
+                    <div data-in="down" class="flex items-end gap-4">
+                        <span class="font-display text-[88px] font-semibold leading-[.8] tabular-nums">05</span>
+                        <div class="pb-1 leading-tight">
+                            <p class="font-display text-[28px] italic text-gold-ink">Sabtu</p>
+                            <p class="text-sm text-muted">Desember 2026</p>
                         </div>
                     </div>
-                    <div data-in="down" class="mb-3">
-                        <h2 class="font-gothic text-[30px] leading-none text-gold-ink">Resepsi</h2>
-                        <div class="mt-2 flex items-center justify-center gap-2.5 leading-none">
-                            <span class="text-[50px]">02</span>
-                            <span class="text-left text-xl">SABTU<br>DES 2023</span>
-                            <span class="h-[42px] w-0.5 bg-gold"></span>
-                            <span class="text-left text-xl">11.00 s.d.<br>13.00 WIB</span>
+                    <dl data-in="up" class="mt-6 w-full divide-y divide-ink/10 border-y border-ink/10">
+                        <div class="flex items-baseline justify-between py-3">
+                            <dt class="font-display text-[24px] italic">Akad nikah</dt>
+                            <dd class="text-sm tabular-nums">08.00 WIB – selesai</dd>
                         </div>
+                        <div class="flex items-baseline justify-between py-3">
+                            <dt class="font-display text-[24px] italic">Resepsi</dt>
+                            <dd class="text-sm tabular-nums">11.00 – 13.00 WIB</dd>
+                        </div>
+                    </dl>
+                    <div data-in="up" class="mt-5">
+                        <p class="text-xs text-muted">Lokasi acara</p>
+                        <p class="font-display text-[28px] font-semibold leading-tight">Balai Komando</p>
+                        <p class="text-sm text-muted">Jalan RA Fadillah No. 9, Cijantung, Jakarta Timur</p>
                     </div>
-                    <div data-in="up" class="mb-4">
-                        <h3 class="font-gothic text-lg text-gold-ink">Lokasi Acara</h3>
-                        <p class="text-sm font-bold">Balai Komando</p>
-                        <p class="text-sm">Jalan RA Fadillah No. 9, Cijantung, Jakarta Timur</p>
-                    </div>
-                    <div id="countdown" data-datetime="2030-12-02T08:00" data-in="up"
-                        class="grid w-full max-w-[290px] grid-cols-4 gap-2" role="timer"
-                        aria-label="Hitung mundur acara">
-                        <div class="rounded-md bg-ink p-1 text-white">
-                            <div class="text-[1.35rem] font-bold leading-tight tabular-nums">0</div>
-                            <div class="text-xs">Hari</div>
+                    <div data-in="up" class="mt-6 w-full">
+                        <div id="countdown" data-datetime="2026-12-05T08:00:00+07:00"
+                            class="grid grid-cols-4 divide-x divide-ink/15 text-center" role="timer"
+                            aria-label="Hitung mundur acara">
+                            <div>
+                                <div class="font-display text-[34px] font-semibold leading-none tabular-nums">0</div>
+                                <div class="mt-1 text-xs text-muted">Hari</div>
+                            </div>
+                            <div>
+                                <div class="font-display text-[34px] font-semibold leading-none tabular-nums">0</div>
+                                <div class="mt-1 text-xs text-muted">Jam</div>
+                            </div>
+                            <div>
+                                <div class="font-display text-[34px] font-semibold leading-none tabular-nums">0</div>
+                                <div class="mt-1 text-xs text-muted">Menit</div>
+                            </div>
+                            <div>
+                                <div class="font-display text-[34px] font-semibold leading-none tabular-nums">0</div>
+                                <div class="mt-1 text-xs text-muted">Detik</div>
+                            </div>
                         </div>
-                        <div class="rounded-md bg-ink p-1 text-white">
-                            <div class="text-[1.35rem] font-bold leading-tight tabular-nums">0</div>
-                            <div class="text-xs">Jam</div>
-                        </div>
-                        <div class="rounded-md bg-ink p-1 text-white">
-                            <div class="text-[1.35rem] font-bold leading-tight tabular-nums">0</div>
-                            <div class="text-xs">Menit</div>
-                        </div>
-                        <div class="rounded-md bg-ink p-1 text-white">
-                            <div class="text-[1.35rem] font-bold leading-tight tabular-nums">0</div>
-                            <div class="text-xs">Detik</div>
-                        </div>
+                        <p id="cdDone" hidden class="font-display text-[26px] italic text-gold-ink">Hari bahagia telah
+                            tiba.</p>
                     </div>
                     <a data-in="up"
-                        href="https://calendar.google.com/calendar/u/0/r/eventedit?text=The%20Wedding%20Of%20Eris%20%26%20Zahra&dates=20231202T0800%2F20231202T1300&details=&location=Balai%20Komando%20-%20Jalan%20RA%20Fadillah%20No.%209%2C%20Cijantung%2C%20Jakarta%20Timur"
-                        target="_blank" rel="noreferrer noopener" class="btn mt-4">Add to Calendar</a>
+                        href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Pernikahan%20Faisal%20%26%20Noor&amp;dates=20261205T080000%2F20261205T130000&amp;ctz=Asia%2FJakarta&amp;details=&amp;location=Balai%20Komando%20-%20Jalan%20RA%20Fadillah%20No.%209%2C%20Cijantung%2C%20Jakarta%20Timur"
+                        target="_blank" rel="noreferrer noopener" class="btn-ghost mt-5">Tambahkan ke kalender</a>
                 </section>
 
-                <!-- 4 maps -->
-                <section class="slide absolute inset-0 flex flex-col items-center justify-center px-[30px] text-center"
-                    aria-label="Maps">
-                    <div data-in="down" class="mb-5 aspect-square w-full overflow-hidden rounded-[10px] bg-ink/10">
-                        <iframe title="Peta lokasi acara" loading="lazy" allowfullscreen class="size-full border-0"
-                            src="https://maps.google.com/maps?q=-3.3265096968337646,114.5743546576721&z=17&output=embed"></iframe>
+                <!-- 4 peta -->
+                <section
+                    class="slide absolute inset-0 flex flex-col items-start justify-center px-[34px] py-[72px] text-left"
+                    aria-label="Peta">
+                    <h2 data-in="down"
+                        class="mb-4 font-display text-[40px] font-semibold italic leading-none text-gold-ink">Lokasi
+                    </h2>
+                    <div data-in="down"
+                        class="relative mb-5 aspect-[4/3] w-full overflow-hidden rounded-2xl bg-ink/10 ring-1 ring-ink/10">
+                        <iframe title="Peta lokasi acara" allowfullscreen class="size-full border-0"
+                            data-src="https://maps.google.com/maps?q=Balai%20Komando%20Jalan%20RA%20Fadillah%20Cijantung%20Jakarta%20Timur&amp;z=16&amp;output=embed"></iframe>
+                        <button id="mapShield" class="absolute inset-0 z-10 flex items-end justify-center pb-3 text-xs">
+                            <span class="rounded-full bg-paper/90 px-3 py-1.5 text-ink">Ketuk untuk menggeser
+                                peta</span>
+                        </button>
                     </div>
-                    <p data-in="up" class="mb-4">Satu Momen<br>RT.001/RW.001, Telaga Biru, Banjarmasin City, South
-                        Kalimantan, Indonesia</p>
-                    <a data-in="up" href="https://www.google.com/maps/search/?q=-3.3265096968337646,114.5743546576721"
-                        target="_blank" rel="noreferrer noopener" class="btn">Petunjuk Ke Lokasi</a>
+                    <p data-in="up" class="mb-4"><span class="font-display text-[24px] font-semibold">Balai
+                            Komando</span><br><span class="text-sm text-muted">Jalan RA Fadillah No. 9, Cijantung,
+                            Jakarta Timur</span></p>
+                    <a data-in="up"
+                        href="https://www.google.com/maps/search/?api=1&amp;query=Balai%20Komando%20Jalan%20RA%20Fadillah%20Cijantung%20Jakarta%20Timur"
+                        target="_blank" rel="noreferrer noopener" class="btn-ghost">Petunjuk arah</a>
                 </section>
 
-                <!-- 5 gallery -->
-                <section class="slide absolute inset-0 flex flex-col items-center justify-center px-[30px] text-center"
-                    aria-label="Gallery">
-                    <h2 data-in="down" class="mb-4 font-script text-[28.8px] text-gold-ink">The Snapshots</h2>
-                    <div class="grid w-full grid-cols-3 gap-2">
-                        <button data-in="zoom" data-lb class="aspect-[9/11] overflow-hidden"><img
+                <!-- 5 galeri -->
+                <section
+                    class="slide absolute inset-0 flex flex-col items-start justify-center px-[34px] py-[72px] text-left"
+                    aria-label="Galeri">
+                    <h2 data-in="down"
+                        class="mb-4 font-display text-[40px] font-semibold italic leading-none text-gold-ink">Galeri
+                    </h2>
+                    <div class="grid w-full auto-rows-[104px] grid-cols-3 gap-1.5">
+                        <button data-in="zoom" data-lb
+                            class="col-span-2 row-span-3 overflow-hidden rounded-t-[117px] rounded-b-xl"><img
                                 src="https://assets.satumomen.com/images/galleries/880986-gallery-Qw0788X52w.png"
-                                alt="Foto 1" class="size-full object-cover"></button>
-                        <button data-in="zoom" data-lb class="aspect-[9/11] overflow-hidden"><img
+                                alt="Galeri foto 1" loading="lazy" decoding="async"
+                                class="size-full object-cover"></button>
+                        <button data-in="zoom" data-lb class="overflow-hidden rounded-lg"><img
+                                src="https://assets.satumomen.com/images/galleries/880986-gallery-K1GOhjJMGP.png"
+                                alt="Galeri foto 2" loading="lazy" decoding="async"
+                                class="size-full object-cover"></button>
+                        <button data-in="zoom" data-lb class="overflow-hidden rounded-lg"><img
+                                src="https://assets.satumomen.com/images/galleries/880986-gallery-B1r82D7lcJ.png"
+                                alt="Galeri foto 3" loading="lazy" decoding="async"
+                                class="size-full object-cover"></button>
+                        <button data-in="zoom" data-lb class="overflow-hidden rounded-lg"><img
                                 src="https://assets.satumomen.com/images/galleries/880986-gallery-Qw0788X52w.png"
-                                alt="Foto 2" class="size-full object-cover"></button>
-                        <button data-in="zoom" data-lb class="aspect-[9/11] overflow-hidden"><img
+                                alt="Galeri foto 4" loading="lazy" decoding="async"
+                                class="size-full object-cover"></button>
+                        <button data-in="zoom" data-lb class="overflow-hidden rounded-lg"><img
+                                src="https://assets.satumomen.com/images/galleries/880986-gallery-K1GOhjJMGP.png"
+                                alt="Galeri foto 5" loading="lazy" decoding="async"
+                                class="size-full object-cover"></button>
+                        <button data-in="zoom" data-lb class="overflow-hidden rounded-lg"><img
+                                src="https://assets.satumomen.com/images/galleries/880986-gallery-B1r82D7lcJ.png"
+                                alt="Galeri foto 6" loading="lazy" decoding="async"
+                                class="size-full object-cover"></button>
+                        <button data-in="zoom" data-lb class="overflow-hidden rounded-lg"><img
                                 src="https://assets.satumomen.com/images/galleries/880986-gallery-Qw0788X52w.png"
-                                alt="Foto 3" class="size-full object-cover"></button>
-                        <button data-in="zoom" data-lb class="aspect-[9/11] overflow-hidden"><img
-                                src="https://assets.satumomen.com/images/galleries/880986-gallery-K1GOhjJMGP.png"
-                                alt="Foto 4" class="size-full object-cover"></button>
-                        <button data-in="zoom" data-lb class="aspect-[9/11] overflow-hidden"><img
-                                src="https://assets.satumomen.com/images/galleries/880986-gallery-K1GOhjJMGP.png"
-                                alt="Foto 5" class="size-full object-cover"></button>
-                        <button data-in="zoom" data-lb class="aspect-[9/11] overflow-hidden"><img
-                                src="https://assets.satumomen.com/images/galleries/880986-gallery-K1GOhjJMGP.png"
-                                alt="Foto 6" class="size-full object-cover"></button>
-                        <button data-in="zoom" data-lb class="aspect-[9/11] overflow-hidden"><img
-                                src="https://assets.satumomen.com/images/galleries/880986-gallery-B1r82D7lcJ.png"
-                                alt="Foto 7" class="size-full object-cover"></button>
-                        <button data-in="zoom" data-lb class="aspect-[9/11] overflow-hidden"><img
-                                src="https://assets.satumomen.com/images/galleries/880986-gallery-B1r82D7lcJ.png"
-                                alt="Foto 8" class="size-full object-cover"></button>
-                        <button data-in="zoom" data-lb class="aspect-[9/11] overflow-hidden"><img
-                                src="https://assets.satumomen.com/images/galleries/880986-gallery-B1r82D7lcJ.png"
-                                alt="Foto 9" class="size-full object-cover"></button>
+                                alt="Galeri foto 7" loading="lazy" decoding="async"
+                                class="size-full object-cover"></button>
                     </div>
                 </section>
 
-                <!-- 6 love story -->
-                <section class="slide absolute inset-0 flex flex-col items-center justify-center px-[30px] text-left"
-                    aria-label="Love Story">
-                    <h2 data-in="down" class="mb-4 font-script text-[28.8px] text-gold-ink">Our Love Story</h2>
-                    <ol>
-                        <li data-in="up" class="relative mb-3 pl-3">
-                            <span class="absolute -left-3 top-1 size-4 rounded-full bg-gold"></span>
-                            <span class="absolute -left-[5px] top-5 h-full w-0.5 bg-gold"></span>
-                            <h3 class="mb-2 text-sm font-bold">First Meet (2013)</h3>
-                            <p class="text-sm">Bulan agustus 2013 kami pertama kali bertemu dalam Ospek Perkuliahan.
-                                Dalam masa kuliah kami hanya teman biasa.</p>
+                <!-- 6 cerita -->
+                <section
+                    class="slide absolute inset-0 flex flex-col items-start justify-center px-[34px] py-[72px] text-left"
+                    aria-label="Cerita kami">
+                    <h2 data-in="down"
+                        class="mb-3 font-display text-[40px] font-semibold italic leading-none text-gold-ink">Cerita
+                        kami</h2>
+                    <ol class="w-full divide-y divide-ink/10">
+                        <li data-in="up" class="grid grid-cols-[72px_1fr] gap-x-4 py-3">
+                            <span
+                                class="font-display text-[32px] font-semibold italic leading-none text-gold-ink tabular-nums">2013</span>
+                            <div>
+                                <h3 class="text-sm font-semibold">Pertama bertemu</h3>
+                                <p class="mt-1 text-sm text-muted">Agustus 2013 kami bertemu di Ospek perkuliahan.
+                                    Selama kuliah kami hanya teman biasa.</p>
+                            </div>
                         </li>
-                        <li data-in="up" class="relative mb-3 pl-3">
-                            <span class="absolute -left-3 top-1 size-4 rounded-full bg-gold"></span>
-                            <span class="absolute -left-[5px] top-5 h-full w-0.5 bg-gold"></span>
-                            <h3 class="mb-2 text-sm font-bold">Relationship (2018)</h3>
-                            <p class="text-sm">25 Februari 2018 kami mengikat janji sebagai sepasang kekasih</p>
+                        <li data-in="up" class="grid grid-cols-[72px_1fr] gap-x-4 py-3">
+                            <span
+                                class="font-display text-[32px] font-semibold italic leading-none text-gold-ink tabular-nums">2018</span>
+                            <div>
+                                <h3 class="text-sm font-semibold">Menjalin hubungan</h3>
+                                <p class="mt-1 text-sm text-muted">25 Februari 2018 kami mengikat janji sebagai sepasang
+                                    kekasih.</p>
+                            </div>
                         </li>
-                        <li data-in="up" class="relative mb-3 pl-3">
-                            <span class="absolute -left-3 top-1 size-4 rounded-full bg-gold"></span>
-                            <span class="absolute -left-[5px] top-5 h-full w-0.5 bg-gold"></span>
-                            <h3 class="mb-2 text-sm font-bold">Engagement (2021)</h3>
-                            <p class="text-sm">Lika-liku hubungan kami lalui bersama hingga kami memutuskan untuk
-                                bertunangan pada 25 Februari 2021</p>
+                        <li data-in="up" class="grid grid-cols-[72px_1fr] gap-x-4 py-3">
+                            <span
+                                class="font-display text-[32px] font-semibold italic leading-none text-gold-ink tabular-nums">2021</span>
+                            <div>
+                                <h3 class="text-sm font-semibold">Bertunangan</h3>
+                                <p class="mt-1 text-sm text-muted">Lika-liku hubungan kami lalui bersama hingga
+                                    memutuskan bertunangan pada 25 Februari 2021.</p>
+                            </div>
                         </li>
-                        <li data-in="up" class="relative pl-3">
-                            <span class="absolute -left-3 top-1 size-4 rounded-full bg-gold"></span>
-                            <h3 class="mb-2 text-sm font-bold">Married (2021)</h3>
-                            <p class="text-sm">Kami memutuskan untuk mengikat janji suci pernikahan pada 09 Oktober 2021
-                            </p>
+                        <li data-in="up" class="grid grid-cols-[72px_1fr] gap-x-4 py-3">
+                            <span
+                                class="font-display text-[32px] font-semibold italic leading-none text-gold-ink tabular-nums">2026</span>
+                            <div>
+                                <h3 class="text-sm font-semibold">Menikah</h3>
+                                <p class="mt-1 text-sm text-muted">Kami memutuskan mengikat janji suci pernikahan pada 5
+                                    Desember 2026.</p>
+                            </div>
                         </li>
                     </ol>
                 </section>
 
-                <!-- 7 rsvp -->
-                <section class="slide absolute inset-0 flex flex-col items-center justify-center px-[30px] text-center"
-                    aria-label="RSVP">
-                    <h2 data-in="down" class="mb-4 font-script text-[28.8px] text-gold-ink">Do'a Untuk Pengantin</h2>
-                    <p data-in="up" class="mb-4">"Semoga Allah memberkahimu di waktu bahagia dan memberkahimu di waktu
-                        susah, dan mengumpulkan kalian berdua dalam kebaikan"<br><br>[HR. Abu Daud]</p>
-                    <p data-in="up" class="mb-4">Tekan tombol dibawah ini untuk mengirim ucapan dan konfirmasi kehadiran
-                    </p>
-                    <button data-in="up" id="btnRsvp" class="btn mb-4">Konfirmasi &amp; Kirim Ucapan</button>
-                    <p data-in="up">Batas akhir konfirmasi<br>30 April 2022</p>
-                </section>
-
-                <!-- 8 gift -->
-                <section class="slide absolute inset-0 flex flex-col items-center justify-center px-[30px] text-center"
-                    aria-label="Gift">
-                    <h2 data-in="down" class="mb-2 font-script text-[28.8px] text-gold-ink">Tanda Kasih</h2>
-                    <p data-in="down" class="mb-4 text-sm">Terima kasih telah menambah semangat kegembiraan pernikahan
-                        kami dengan kehadiran dan hadiah indah Anda.</p>
-                    <div data-in="up" class="flex gap-2">
-                        <button data-gift="0" class="btn w-[150px]"><i
-                                class="ph-fill ph-credit-card text-lg"></i>Cashless</button>
-                        <button data-gift="1" class="btn w-[150px]"><i class="ph-fill ph-package text-lg"></i>Kirim
-                            Kado</button>
+                <!-- 7 rsvp + ucapan -->
+                <section
+                    class="slide absolute inset-0 flex flex-col items-start px-[34px] py-[72px] text-left"
+                    aria-label="RSVP dan ucapan">
+                    <h2 data-in="down"
+                        class="mb-3 font-display text-[40px] font-semibold italic leading-none text-gold-ink">RSVP</h2>
+                    <div data-in="up" role="tablist" aria-label="RSVP dan ucapan"
+                        class="mb-3 inline-flex rounded-full bg-ink/10 p-1">
+                        <button role="tab" data-rt aria-selected="true" class="inline-flex min-h-10 items-center gap-2 rounded-full px-4 text-sm font-medium transition aria-selected:bg-ink aria-selected:text-paper"><i
+                                class="ph-fill ph-check-circle text-lg"></i>Konfirmasi</button>
+                        <button role="tab" data-rt aria-selected="false" class="inline-flex min-h-10 items-center gap-2 rounded-full px-4 text-sm font-medium transition aria-selected:bg-ink aria-selected:text-paper"><i
+                                class="ph-fill ph-chat-circle-dots text-lg"></i>Ucapan <span id="cCount"
+                                class="rounded-full bg-gold/30 px-1.5 text-xs">0</span></button>
                     </div>
-
-                    <div data-gift-panel hidden class="mt-4 w-full rounded-lg bg-white/60 p-4 text-left">
-                        <div class="mb-3 flex items-center gap-2">
-                            <img src="https://assets.satumomen.com/assets/logo-bca-biru-1687975058.png" alt="Logo BCA"
-                                class="w-20 object-contain">
+                    <div data-in="up" class="flex min-h-0 w-full flex-1 flex-col">
+                        <form id="rsvpForm" data-rp role="tabpanel" class="space-y-3">
+                            <p class="text-sm text-muted">Atas nama <span data-guest class="font-medium text-ink">Nama Tamu</span></p>
                             <div>
-                                <p class="text-lg font-bold">12345678</p>
-                                <button data-copy="12345678" class="btn rounded! px-2! py-1! font-sans text-xs">Salin
-                                    Rekening</button>
-                                <p class="mt-1 text-sm">BCA : Atas Nama Rekening</p>
+                                <label for="rPhone" class="mb-1 block text-xs text-muted">No WhatsApp</label>
+                                <div class="flex gap-2">
+                                    <select id="rCode" aria-label="Kode negara" class="field w-24!">
+                                        <option>+62</option>
+                                        <option>+61</option>
+                                        <option>+43</option>
+                                    </select>
+                                    <input id="rPhone" type="tel" inputmode="numeric" autocomplete="tel-national" required
+                                        pattern="[0-9]{8,13}" title="8 sampai 13 digit, tanpa spasi atau tanda hubung"
+                                        placeholder="81234567890" class="field">
+                                </div>
+                            </div>
+                            <fieldset>
+                                <legend class="mb-1 text-xs text-muted">Kehadiran</legend>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <label><input type="radio" name="att" value="Hadir" required class="peer sr-only"><span
+                                            class="grid min-h-11 cursor-pointer place-items-center rounded-xl border border-ink/25 text-sm transition peer-checked:border-ink peer-checked:bg-ink peer-checked:text-paper peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-gold-ink">Hadir</span></label>
+                                    <label><input type="radio" name="att" value="Tidak Hadir" class="peer sr-only"><span
+                                            class="grid min-h-11 cursor-pointer place-items-center rounded-xl border border-ink/25 text-sm transition peer-checked:border-ink peer-checked:bg-ink peer-checked:text-paper peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-gold-ink">Tidak
+                                            hadir</span></label>
+                                </div>
+                            </fieldset>
+                            <div><label for="rMsg" class="mb-1 block text-xs text-muted">Komentar atau ucapan</label><textarea
+                                    id="rMsg" rows="3" required placeholder="Tulis ucapan Anda" class="field"></textarea></div>
+                            <button id="rsvpSend" class="btn w-full">Kirim</button>
+                            <p class="text-sm text-muted">Konfirmasi paling lambat 28 November 2026</p>
+                        </form>
+                        <div data-rp role="tabpanel" hidden class="flex min-h-0 flex-1 flex-col">
+                            <p class="mb-3 font-display text-lg italic leading-snug">&ldquo;Semoga Allah memberkahimu di
+                                waktu bahagia dan memberkahimu di waktu susah, dan mengumpulkan kalian berdua dalam
+                                kebaikan.&rdquo;<span class="mt-1 block font-sans text-sm not-italic text-muted">HR. Abu
+                                    Daud</span></p>
+                            <div id="comments" data-scroll
+                                class="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto overscroll-contain border-t border-ink/10 pt-3 [scrollbar-width:thin]">
+                                <p id="noComments" class="text-sm text-muted">Belum ada ucapan. Jadilah yang pertama.</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <img src="https://assets.satumomen.com/assets/logo-bca-biru-1687975058.png" alt="Logo BCA"
-                                class="w-20 object-contain">
-                            <div>
-                                <p class="text-lg font-bold">12345678</p>
-                                <button data-copy="12345678" class="btn rounded! px-2! py-1! font-sans text-xs">Salin
-                                    Rekening</button>
-                                <p class="mt-1 text-sm">BCA : Atas Nama</p>
-                            </div>
-                        </div>
+                    </div>
+                    <p id="rsvpStatus" role="status" class="mt-2 min-h-5 text-sm text-gold-ink"></p>
+                </section>
+
+                <!-- 8 hadiah -->
+                <section
+                    class="slide absolute inset-0 flex flex-col items-start justify-center px-[34px] py-[72px] text-left"
+                    aria-label="Hadiah">
+                    <h2 data-in="down"
+                        class="mb-2 font-display text-[40px] font-semibold italic leading-none text-gold-ink">Tanda
+                        kasih</h2>
+                    <p data-in="down" class="mb-4 text-sm text-muted">Terima kasih telah menambah semangat kegembiraan
+                        pernikahan kami dengan kehadiran dan hadiah indah Anda.</p>
+                    <div data-in="up" role="tablist" aria-label="Cara memberi hadiah"
+                        class="mb-2 inline-flex rounded-full bg-ink/10 p-1">
+                        <button role="tab" data-gift="0" aria-selected="true"
+                            class="inline-flex min-h-10 items-center gap-2 rounded-full px-4 text-sm font-medium transition aria-selected:bg-ink aria-selected:text-paper"><i
+                                class="ph-fill ph-credit-card text-lg"></i>Transfer</button>
+                        <button role="tab" data-gift="1" aria-selected="false"
+                            class="inline-flex min-h-10 items-center gap-2 rounded-full px-4 text-sm font-medium transition aria-selected:bg-ink aria-selected:text-paper"><i
+                                class="ph-fill ph-package text-lg"></i>Kirim kado</button>
                     </div>
 
-                    <div data-gift-panel hidden class="mt-4 w-full rounded-lg bg-white/60 p-4">
-                        <h3 class="mb-2 text-lg font-bold text-gold-ink">Kirim Kado</h3>
-                        <p>Anda dapat mengirim kado ke:<br>Jl. Wildan Sari 1 No 11 Banjarmasin Barat 70119</p>
-                        <button data-copy="Jl. Wildan Sari 1 No 11 Banjarmasin Barat 70119"
-                            class="btn mt-2 rounded! px-2! py-1! font-sans text-xs">Salin Alamat</button>
+                    <div data-in="up" class="w-full">
+                        <div data-gift-panel role="tabpanel" hidden class="w-full divide-y divide-ink/10">
+                            <div class="flex items-center gap-3 py-3">
+                                <img src="https://assets.satumomen.com/assets/logo-bca-biru-1687975058.png"
+                                    alt="Logo BCA" class="w-14 shrink-0 object-contain">
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-lg font-semibold tabular-nums">12345678</p>
+                                    <p class="text-sm text-muted">BCA · a.n. Akhmad Faisal</p>
+                                </div>
+                                <button data-copy="12345678" class="tlink">Salin</button>
+                            </div>
+                            <div class="flex items-center gap-3 py-3">
+                                <img src="https://assets.satumomen.com/assets/logo-bca-biru-1687975058.png"
+                                    alt="Logo BCA" class="w-14 shrink-0 object-contain">
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-lg font-semibold tabular-nums">87654321</p>
+                                    <p class="text-sm text-muted">BCA · a.n. Noor Hidayati</p>
+                                </div>
+                                <button data-copy="87654321" class="tlink">Salin</button>
+                            </div>
+                        </div>
+
+                        <div data-gift-panel role="tabpanel" hidden class="w-full py-3">
+                            <p class="text-sm">Anda dapat mengirim kado ke:</p>
+                            <p class="mt-1 font-display text-[22px] font-semibold leading-snug">Jl. Wildan Sari 1 No 11,
+                                Banjarmasin Barat 70119</p>
+                            <button data-copy="Jl. Wildan Sari 1 No 11 Banjarmasin Barat 70119" class="tlink mt-1">Salin
+                                alamat</button>
+                        </div>
                     </div>
                 </section>
 
-                <!-- 9 thanks -->
-                <section class="slide absolute inset-0 flex flex-col items-center justify-center px-[30px] text-center"
-                    aria-label="Thanks">
+                <!-- 9 penutup -->
+                <section
+                    class="slide absolute inset-0 flex flex-col items-center justify-center px-[34px] py-[72px] text-center"
+                    aria-label="Penutup">
                     <img data-in="down"
                         src="https://assets.satumomen.com/images/galleries/880986-gallery-x5Ha0jUXq4.png"
-                        alt="Logo pernikahan" class="mb-5 h-[125px] w-[158px] object-contain">
-                    <p data-in="down" class="mb-3 px-5 text-sm">Merupakan suatu kebahagiaan dan kehormatan bagi kami,
-                        apabila Bapak/Ibu/Saudara/i, berkenan hadir dan memberikan do'a restu kepada kedua mempelai.</p>
-                    <p data-in="up" class="italic">Hormat Kami Yang Mengundang</p>
-                    <p data-in="up" class="text-[30px] font-bold leading-tight text-gold-ink">Vivy &amp; Fauzan</p>
-                    <p data-in="up" class="mt-12 text-[10px] opacity-60"><strong>Music:</strong> Instrumental Lagu Jawa
-                    </p>
+                        alt="Logo pernikahan" class="mb-5 h-[110px] w-[158px] object-contain">
+                    <p data-in="down" class="mb-4 px-3 text-sm">Merupakan suatu kebahagiaan dan kehormatan bagi kami,
+                        apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu kepada kedua mempelai.</p>
+                    <p data-in="up" class="font-display text-lg italic text-muted">Hormat kami yang mengundang</p>
+                    <p data-in="up" class="font-display text-[44px] font-semibold italic leading-tight text-gold-ink">
+                        Faisal &amp; Noor</p>
+                    <p data-in="up" class="mt-10 text-xs text-muted"><strong class="font-medium">Musik:</strong>
+                        Instrumental Lagu Jawa</p>
                 </section>
             </div>
 
-            <!-- floating controls -->
-            <div id="fab" class="absolute bottom-[120px] right-5 z-20 flex flex-col items-end gap-3">
+            <!-- top: section nav. list slides to centre the active item, ink pill follows it -->
+            <div id="tools" inert class="absolute inset-x-3 top-3 z-20 flex gap-2">
+                <nav id="navView" aria-label="Navigasi undangan" class="float min-w-0 flex-1 overflow-hidden rounded-full">
+                    <ul id="navList" class="will-change-transform relative flex h-14 w-max items-center">
+                        <li id="pill" aria-hidden="true" class="will-change-transform absolute inset-y-1 left-1 w-[72px] rounded-full bg-ink"></li>
+                        <li class="w-20"><button data-go="0" class="nav-chip"><i class="ph-fill ph-house-line text-xl"></i>Sampul</button></li>
+                        <li class="w-20"><button data-go="1" class="nav-chip"><i class="ph-fill ph-book-open-text text-xl"></i>Ayat</button></li>
+                        <li class="w-20"><button data-go="2" class="nav-chip"><i class="ph-fill ph-heart text-xl"></i>Mempelai</button></li>
+                        <li class="w-20"><button data-go="3" class="nav-chip"><i class="ph-fill ph-calendar-dots text-xl"></i>Acara</button></li>
+                        <li class="w-20"><button data-go="4" class="nav-chip"><i class="ph-fill ph-map-pin text-xl"></i>Peta</button></li>
+                        <li class="w-20"><button data-go="5" class="nav-chip"><i class="ph-fill ph-image text-xl"></i>Galeri</button></li>
+                        <li class="w-20"><button data-go="6" class="nav-chip"><i class="ph-fill ph-scroll text-xl"></i>Cerita kami</button></li>
+                        <li class="w-20"><button data-go="7" class="nav-chip"><i class="ph-fill ph-chat-circle-dots text-xl"></i>RSVP</button></li>
+                        <li class="w-20"><button data-go="8" class="nav-chip"><i class="ph-fill ph-gift text-xl"></i>Hadiah</button></li>
+                        <li class="w-20"><button data-go="9" class="nav-chip"><i class="ph-fill ph-check-circle text-xl"></i>Penutup</button></li>
+                    </ul>
+                </nav>
                 <button id="btnQr" aria-label="Tampilkan QR tamu"
-                    class="grid size-10 place-items-center rounded-full bg-ink/85 text-white"><i
-                        class="ph-fill ph-qr-code text-2xl"></i></button>
-                <button id="btnMusic" aria-label="Putar atau jeda musik"
-                    class="grid size-10 place-items-center rounded-full bg-ink/85 text-white"><i
-                        class="ph-fill ph-speaker-high text-2xl"></i></button>
-                <button id="btnAuto" aria-label="Putar otomatis"
-                    class="grid size-10 place-items-center rounded-full bg-ink/85 text-white"><i
-                        class="ph-fill ph-play-circle text-2xl"></i></button>
+                    class="float grid size-14 shrink-0 place-items-center rounded-full text-ink transition active:scale-95"><i
+                        class="ph-fill ph-qr-code text-xl"></i></button>
             </div>
 
-            <!-- menu -->
-            <nav id="menu"
-                class="absolute inset-x-0 bottom-0 z-20 h-20 overflow-hidden bg-menu shadow-[0_-1px_6px_rgb(0_0_0/.12)]"
-                aria-label="Navigasi undangan">
-                <ul id="menuList" class="relative flex h-full w-max items-center">
-                    <li id="pill" aria-hidden="true"
-                        class="absolute left-1 top-1 bottom-1 w-[74.8px] rounded-xl bg-ink"></li>
-                    <li class="w-[82.8px]"><button
-                            class="relative z-10 flex h-20 w-full flex-col items-center justify-center text-white"><i
-                                class="ph-fill ph-house-line text-2xl"></i><span class="text-xs">Opening</span></button>
-                    </li>
-                    <li class="w-[82.8px]"><button
-                            class="relative z-10 flex h-20 w-full flex-col items-center justify-center text-white"><i
-                                class="ph-fill ph-book-open-text text-2xl"></i><span
-                                class="text-xs">Surah</span></button></li>
-                    <li class="w-[82.8px]"><button
-                            class="relative z-10 flex h-20 w-full flex-col items-center justify-center text-white"><i
-                                class="ph-fill ph-heart text-2xl"></i><span class="text-xs">Mempelai</span></button>
-                    </li>
-                    <li class="w-[82.8px]"><button
-                            class="relative z-10 flex h-20 w-full flex-col items-center justify-center text-white"><i
-                                class="ph-fill ph-calendar-dots text-2xl"></i><span class="text-xs">Waktu
-                                Acara</span></button></li>
-                    <li class="w-[82.8px]"><button
-                            class="relative z-10 flex h-20 w-full flex-col items-center justify-center text-white"><i
-                                class="ph-fill ph-map-pin text-2xl"></i><span class="text-xs">Maps</span></button></li>
-                    <li class="w-[82.8px]"><button
-                            class="relative z-10 flex h-20 w-full flex-col items-center justify-center text-white"><i
-                                class="ph-fill ph-image text-2xl"></i><span class="text-xs">Gallery</span></button></li>
-                    <li class="w-[82.8px]"><button
-                            class="relative z-10 flex h-20 w-full flex-col items-center justify-center text-white"><i
-                                class="ph-fill ph-scroll text-2xl"></i><span class="text-xs">Love Story</span></button>
-                    </li>
-                    <li class="w-[82.8px]"><button
-                            class="relative z-10 flex h-20 w-full flex-col items-center justify-center text-white"><i
-                                class="ph-fill ph-chat-circle-dots text-2xl"></i><span
-                                class="text-xs">RSVP</span></button></li>
-                    <li class="w-[82.8px]"><button
-                            class="relative z-10 flex h-20 w-full flex-col items-center justify-center text-white"><i
-                                class="ph-fill ph-gift text-2xl"></i><span class="text-xs">Gift</span></button></li>
-                    <li class="w-[82.8px]"><button
-                            class="relative z-10 flex h-20 w-full flex-col items-center justify-center text-white"><i
-                                class="ph-fill ph-check-circle text-2xl"></i><span
-                                class="text-xs">Thanks</span></button></li>
-                </ul>
-            </nav>
+            <!-- bottom: actions -->
+            <div id="actions" inert class="pointer-events-none absolute inset-x-0 bottom-3 z-20 flex justify-center">
+                <div class="float pointer-events-auto flex items-center gap-1.5 rounded-full p-1.5">
+                    <button id="btnLoc" class="btn h-12"><i class="ph-fill ph-map-pin text-lg"></i>Lokasi</button>
+                    <button id="btnMusic" aria-label="Musik" aria-pressed="false" class="act-btn"><i
+                            class="ph-fill ph-speaker-slash text-xl"></i></button>
+                    <button id="btnAuto" aria-label="Putar otomatis" aria-pressed="false" class="act-btn"><i
+                            class="ph-fill ph-play-circle text-xl"></i></button>
+                </div>
+            </div>
         </main>
     </div>
 
     <!-- QR -->
-    <dialog id="dlgQr" class="m-auto w-[min(92vw,360px)] rounded-2xl bg-white p-0 text-ink">
+    <dialog id="dlgQr" class="m-auto w-[min(92vw,360px)] rounded-3xl bg-paper p-0 text-ink">
         <form method="dialog" class="relative p-6 text-center">
             <button aria-label="Tutup"
-                class="absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-ink/10"><i
+                class="absolute right-3 top-3 grid size-10 place-items-center rounded-full transition hover:bg-ink/10"><i
                     class="ph-fill ph-x text-lg"></i></button>
             <div class="mx-auto w-fit pt-4"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="180"
                     height="180" role="img" aria-label="QR code tamu" viewBox="0 0 180 180">
@@ -419,74 +503,37 @@
                     </g>
                 </svg></div>
             <hr class="my-4 border-dashed border-ink/20">
-            <p class="text-sm text-ink/60">Nama</p>
-            <p data-guest class="mb-2">Nama Tamu</p>
-            <p class="text-sm text-ink/60">Grup</p>
+            <p class="text-sm text-muted">Nama</p>
+            <p data-guest class="mb-2 font-display text-2xl font-semibold">Nama Tamu</p>
+            <p class="text-sm text-muted">Grup</p>
             <p data-group>VIP</p>
         </form>
     </dialog>
 
-    <!-- RSVP -->
-    <dialog id="dlgRsvp" class="m-auto max-h-[90dvh] w-[min(92vw,500px)] rounded-2xl bg-white p-0 font-sans text-ink">
-        <div class="relative p-5">
-            <form method="dialog" class="absolute right-3 top-3"><button aria-label="Tutup"
-                    class="grid size-9 place-items-center rounded-full bg-ink/10"><i
-                        class="ph-fill ph-x text-lg"></i></button></form>
-            <h2 class="mb-4 text-center font-gothic text-2xl">RSVP</h2>
-            <form id="rsvpForm" class="space-y-3">
-                <div><label for="rName" class="mb-1 block text-xs">Nama</label><input id="rName" class="field" disabled>
-                </div>
-                <div>
-                    <label for="rPhone" class="mb-1 block text-xs">No WhatsApp</label>
-                    <div class="flex gap-2">
-                        <select aria-label="Kode negara" class="field w-24!">
-                            <option>+62</option>
-                            <option>+61</option>
-                            <option>+43</option>
-                        </select>
-                        <input id="rPhone" type="tel" inputmode="numeric" required placeholder="No WhatsApp"
-                            class="field">
-                    </div>
-                </div>
-                <div><label for="rAtt" class="mb-1 block text-xs">Kehadiran</label>
-                    <select id="rAtt" required class="field">
-                        <option value="">Kehadiran</option>
-                        <option>Hadir</option>
-                        <option>Tidak Hadir</option>
-                    </select>
-                </div>
-                <div><label for="rMsg" class="mb-1 block text-xs">Komentar atau Ucapan</label><textarea id="rMsg"
-                        rows="3" required placeholder="Komentar atau Ucapan" class="field"></textarea></div>
-                <button class="btn w-full rounded-full!">Kirim</button>
-            </form>
-            <div id="comments" class="mt-5 flex flex-col gap-3 border-t border-ink/10 pt-4">
-                <p id="noComments" class="text-center text-sm text-ink/60">Belum ada ucapan. Jadilah yang pertama.</p>
-            </div>
-        </div>
-    </dialog>
     <template id="tplComment">
-        <article class="flex gap-2 rounded-lg border border-ink/10 bg-white p-2">
-            <img class="size-[30px] shrink-0 rounded-full" alt="">
-            <div class="min-w-0 text-left text-sm">
-                <p class="font-bold"><span data-n></span> <span data-a
-                        class="ml-1 rounded bg-sky-100 px-1.5 py-0.5 text-xs font-normal text-sky-900"></span></p>
+        <article class="flex gap-3 border-b border-ink/10 pb-3 last:border-0">
+            <span data-i
+                class="grid size-8 shrink-0 place-items-center rounded-lg bg-gold/25 text-sm font-semibold text-gold-ink"></span>
+            <div class="min-w-0 text-sm">
+                <p class="font-semibold"><span data-n></span> <span data-a
+                        class="ml-1 rounded bg-gold/20 px-1.5 py-0.5 text-xs font-medium text-gold-ink"></span></p>
                 <p data-m class="break-words"></p>
-                <small data-t class="text-ink/60"></small>
+                <small data-t class="text-muted"></small>
             </div>
         </article>
     </template>
 
     <!-- lightbox -->
     <dialog id="dlgLb" class="m-0 size-full max-h-none max-w-none bg-black/85 p-0">
-        <img id="lbImg" alt="" class="size-full object-contain">
+        <img id="lbImg" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="size-full object-contain">
         <form method="dialog"><button aria-label="Tutup"
-                class="fixed right-4 top-4 grid size-12 place-items-center rounded-full bg-white/25 text-white"><i
+                class="fixed right-4 top-4 grid size-12 place-items-center rounded-full bg-white/25 text-white transition hover:bg-white/40"><i
                     class="ph-fill ph-x text-2xl"></i></button></form>
         <button id="lbPrev" aria-label="Sebelumnya"
-            class="fixed left-4 top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-white/25 text-white"><i
+            class="fixed left-4 top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-white/25 text-white transition hover:bg-white/40"><i
                 class="ph-fill ph-caret-left text-2xl"></i></button>
         <button id="lbNext" aria-label="Berikutnya"
-            class="fixed right-4 top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-white/25 text-white"><i
+            class="fixed right-4 top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-white/25 text-white transition hover:bg-white/40"><i
                 class="ph-fill ph-caret-right text-2xl"></i></button>
     </dialog>
 
@@ -499,13 +546,13 @@
         const $$ = (s, r = document) => [...r.querySelectorAll(s)];
         const k = matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 1; // 0 = no motion
         const AUTO_SECONDS = 15;
+        const RSVP_ENDPOINT = ""; // POST JSON {name, phone, attendance, message}; empty = demo mode, comments stay on this page
 
         /* guest from ?to=Nama&group=VIP */
         const qs = new URLSearchParams(location.search);
         const guest = qs.get("to") || "Nama Tamu";
         $$("[data-guest]").forEach(e => e.textContent = guest);
         $$("[data-group]").forEach(e => e.textContent = qs.get("group") || "VIP");
-        $("#rName").value = guest;
 
         /* fit the 414px design canvas to the screen */
         const stage = $("#stage");
@@ -516,18 +563,40 @@
         fit();
         addEventListener("resize", fit);
 
-        /* slides + menu */
+        /* slides + nav state */
         const slides = $$(".slide");
-        const items = $$("#menuList button");
-        const menuList = $("#menuList");
-        const pill = $("#pill");
-        const menuView = 414;
+        const items = $$("[data-go]");
+        const shield = $("#mapShield");
         let cur = 0, opened = false, locked = false;
 
         gsap.set(slides.slice(1), { autoAlpha: 0 });
         gsap.set($$("[data-in]"), { autoAlpha: 0 });
-        gsap.set("#menu", { yPercent: 100 });
-        gsap.set("#fab", { y: 90 });
+        gsap.set("#tools", { yPercent: -130 });
+        gsap.set("#actions", { y: 90 });
+        gsap.set("[data-f]", { transformOrigin: (i, t) => ({ tl: "0% 0%", tr: "100% 0%", bl: "0% 100%", br: "100% 100%" })[t.dataset.f] });
+        const mark = n => items.forEach(b => b.setAttribute("aria-current", +b.dataset.go === n));
+        /* nav: list translates so the active item sits mid-view (clamped at both ends), pill slides to it */
+        const navView = $("#navView"), navList = $("#navList"), pill = $("#pill");
+        let m; // measured once at open (item widths are fixed): navTo then does no layout reads between tween writes
+        const measure = () => m = { view: navView.clientWidth, w: navList.scrollWidth, itemW: items[0].parentElement.offsetWidth, lefts: items.map(b => b.parentElement.offsetLeft) };
+        function navTo(n) {
+            m ||= measure();
+            gsap.to(pill, { x: m.lefts[n], duration: .45 * k, ease: "power3.out" });
+            gsap.to(navList, { x: gsap.utils.clamp(m.view - m.w, 0, m.view / 2 - m.itemW / 2 - m.lefts[n]), duration: .5 * k, ease: "power3.out" });
+        }
+        const mapFrame = $("iframe[data-src]");
+        const loadMap = () => { if (mapFrame.dataset.src) { mapFrame.src = mapFrame.dataset.src; mapFrame.removeAttribute("data-src"); } };
+        /* corner frames part outward and settle back on every section change; one timeline, killed and restarted from wherever it is, so no snap */
+        const OUT = { tl: [-1, -1], tr: [1, -1], bl: [-1, 1], br: [1, 1] };
+        let kickTl;
+        function kick() {
+            if (!k) return;
+            kickTl?.kill();
+            kickTl = gsap.timeline()
+                .to("[data-f]", { x: (i, t) => OUT[t.dataset.f][0] * 16, y: (i, t) => OUT[t.dataset.f][1] * 16, scale: 1.05, duration: .35, ease: "power2.out", overwrite: "auto" })
+                .to("[data-f]", { x: 0, y: 0, scale: 1, duration: 1.1, ease: "expo.out" });
+        }
+        mark(0);
 
         function enter(slide) {
             const els = $$("[data-in]", slide);
@@ -545,18 +614,22 @@
             gsap.to(out, { autoAlpha: 0, duration: .35 * k, ease: "power2.in", overwrite: true });
             gsap.to(inn, { autoAlpha: 1, duration: .4 * k, delay: .15 * k, overwrite: true });
             enter(inn);
-            items.forEach((b, i) => i === n ? b.setAttribute("aria-current", "true") : b.removeAttribute("aria-current"));
-            const it = items[n].parentElement;
-            gsap.to(pill, { x: it.offsetLeft, duration: .45 * k, ease: "power3.out" });
-            const x = gsap.utils.clamp(menuView - menuList.scrollWidth, 0, menuView / 2 - it.offsetWidth / 2 - it.offsetLeft);
-            gsap.to(menuList, { x, duration: .5 * k, ease: "power3.out" });
+            mark(n);
+            navTo(n);
+            shield.hidden = false; // map ignores swipes again after leaving its slide
+            kick();
+            if (n >= 3) loadMap();
         }
-        items.forEach((b, i) => b.addEventListener("click", () => opened && go(i)));
+        items.forEach(b => b.addEventListener("click", () => opened && go(+b.dataset.go)));
+        shield.addEventListener("click", () => shield.hidden = true);
 
         /* autoplay: a 15s looping tween, each repeat = next slide */
         const auto = gsap.to({}, { duration: AUTO_SECONDS, repeat: -1, paused: true, onRepeat: () => go(gsap.utils.wrap(0, slides.length, cur + 1), false) });
         const btnAuto = $("#btnAuto");
-        const setAutoIcon = on => btnAuto.firstElementChild.className = "ph-fill text-2xl " + (on ? "ph-pause-circle" : "ph-play-circle");
+        const setAutoIcon = on => {
+            btnAuto.firstElementChild.className = "ph-fill text-xl " + (on ? "ph-pause-circle" : "ph-play-circle");
+            btnAuto.setAttribute("aria-pressed", on);
+        };
         function startAuto() { auto.restart(); setAutoIcon(true); }
         function stopAuto() { auto.pause(); setAutoIcon(false); }
         btnAuto.addEventListener("click", () => auto.paused() ? (opened ? startAuto() : openInvitation()) : stopAuto());
@@ -574,7 +647,12 @@
         });
         obs.disable();
         addEventListener("keydown", e => {
-            if (!opened || document.querySelector("dialog[open]")) return;
+            if ($("#dlgLb").open) {
+                if (e.key === "ArrowLeft") showShot(lb - 1);
+                if (e.key === "ArrowRight") showShot(lb + 1);
+                return;
+            }
+            if (!opened || document.querySelector("dialog[open]") || e.target.matches?.("input,textarea,select")) return;
             if (e.key === "ArrowDown" || e.key === "ArrowRight") swipe(1);
             if (e.key === "ArrowUp" || e.key === "ArrowLeft") swipe(-1);
         });
@@ -582,7 +660,10 @@
         /* music */
         const music = $("#music"), btnMusic = $("#btnMusic");
         let userMuted = false;
-        const setMusicIcon = on => btnMusic.firstElementChild.className = "ph-fill text-2xl " + (on ? "ph-speaker-high" : "ph-speaker-slash");
+        const setMusicIcon = on => {
+            btnMusic.firstElementChild.className = "ph-fill text-xl " + (on ? "ph-speaker-high" : "ph-speaker-slash");
+            btnMusic.setAttribute("aria-pressed", on);
+        };
         function playMusic() {
             music.volume = 0;
             music.play().then(() => { gsap.to(music, { volume: 1, duration: 1.5 }); setMusicIcon(true); }).catch(() => setMusicIcon(false));
@@ -595,19 +676,18 @@
             if (document.hidden) { music.pause(); stopAuto(); }
             else if (opened && !userMuted) playMusic();
         });
-        setMusicIcon(false);
 
         /* open invitation */
         function openInvitation() {
             if (opened) return;
             opened = true;
+            measure(); // read layout before any tween writes this frame
             $("#btnOpen").hidden = true;
             playMusic();
-            if (matchMedia("(pointer:coarse)").matches) document.documentElement.requestFullscreen?.().catch(() => { });
+            $("#tools").inert = $("#actions").inert = false;
             gsap.timeline({ defaults: { duration: .8 * k, ease: "power3.out", overwrite: "auto" } })
-                .to("#menu", { yPercent: 0 })
-                .to("#fab", { y: 0 }, "<")
-                .to('[data-f="bl"],[data-f="br"]', { y: -80 }, "<");
+                .to("#tools", { yPercent: 0 })
+                .to("#actions", { y: 0 }, "<");
             obs.enable();
             startAuto();
             go(1, false);
@@ -633,7 +713,7 @@
         addEventListener("load", () => setTimeout(hideLoader, 100));
         setTimeout(hideLoader, 5000);
 
-        /* dialogs: native <dialog>, pause autoplay + swipe while open */
+        /* dialogs: native <dialog>, pause autoplay + swipe while open, backdrop click closes */
         let resumeAuto = false;
         function openDlg(d) {
             resumeAuto = !auto.paused();
@@ -641,12 +721,15 @@
             d.showModal();
             gsap.fromTo(d, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: .35 * k, ease: "power3.out" });
         }
-        $$("dialog").forEach(d => d.addEventListener("close", () => {
-            if (opened) obs.enable();
-            if (resumeAuto) startAuto();
-        }));
+        $$("dialog").forEach(d => {
+            d.addEventListener("close", () => {
+                if (opened) obs.enable();
+                if (resumeAuto) startAuto();
+            });
+            d.addEventListener("click", e => { if (e.target === d) d.close(); });
+        });
         $("#btnQr").addEventListener("click", () => openDlg($("#dlgQr")));
-        $("#btnRsvp").addEventListener("click", () => openDlg($("#dlgRsvp")));
+        $("#btnLoc").addEventListener("click", () => go(4)); // quick way back to the map section
 
         /* lightbox */
         const shots = $$("[data-lb] img");
@@ -656,13 +739,25 @@
         $("#lbPrev").addEventListener("click", () => showShot(lb - 1));
         $("#lbNext").addEventListener("click", () => showShot(lb + 1));
 
-        /* gift tabs */
-        $$("[data-gift]").forEach(b => b.addEventListener("click", () => {
-            stopAuto();
-            const panels = $$("[data-gift-panel]");
-            panels.forEach((p, i) => p.hidden = i !== +b.dataset.gift);
-            gsap.from(panels[+b.dataset.gift], { autoAlpha: 0, scale: .94, duration: .5 * k, ease: "expo.out" });
-        }));
+        /* tabs: gift (transfer / kado) and rsvp (konfirmasi / ucapan) share one helper */
+        function tabset(tabSel, panelSel) {
+            const tabs = $$(tabSel), panels = $$(panelSel);
+            const show = (i, anim) => {
+                tabs.forEach((t, j) => t.setAttribute("aria-selected", j === i));
+                panels.forEach((p, j) => p.hidden = j !== i);
+                if (anim) gsap.from(panels[i], { autoAlpha: 0, y: 8, duration: .4 * k, ease: "expo.out" });
+            };
+            tabs.forEach((b, i) => b.addEventListener("click", () => { stopAuto(); show(i, true); }));
+            show(0);
+            return show;
+        }
+        tabset("[data-gift]", "[data-gift-panel]");
+        const showRsvpTab = tabset("[data-rt]", "[data-rp]");
+
+        /* the stage swipes on touch/wheel/drag; keep form fields and the ucapan list scrollable and selectable */
+        $$("[data-scroll], #rsvpForm input, #rsvpForm textarea, #rsvpForm select").forEach(el =>
+            ["wheel", "touchstart", "touchmove", "pointerdown"].forEach(t => el.addEventListener(t, e => e.stopPropagation(), { passive: true })));
+        $("#rsvpForm").addEventListener("focusin", stopAuto); // typing must not get auto-advanced away
 
         /* copy */
         document.addEventListener("click", async e => {
@@ -675,28 +770,53 @@
         });
 
         /* countdown */
-        const cd = $("#countdown"), nums = $$(".tabular-nums", cd), target = new Date(cd.dataset.datetime).getTime();
+        const cd = $("#countdown"), nums = $$(".tabular-nums", cd), done = $("#cdDone"), target = new Date(cd.dataset.datetime).getTime();
         function tick() {
-            const s = Math.max(0, Math.floor((target - Date.now()) / 1000));
+            const ms = target - Date.now();
+            cd.hidden = ms <= 0;
+            done.hidden = ms > 0;
+            const s = Math.max(0, Math.floor(ms / 1000));
             [Math.floor(s / 86400), Math.floor(s % 86400 / 3600), Math.floor(s % 3600 / 60), s % 60].forEach((v, i) => nums[i].textContent = v);
         }
         tick();
         setInterval(tick, 1000);
 
-        /* rsvp: no backend here, comments live in this page only */
-        // shortcut: ucapan tidak tersimpan; sambungkan form ke API saat server siap
-        $("#rsvpForm").addEventListener("submit", e => {
-            e.preventDefault();
+        /* rsvp */
+        const form = $("#rsvpForm"), status = $("#rsvpStatus"), send = $("#rsvpSend");
+        function addComment({ attendance, message }) {
             const n = $("#tplComment").content.cloneNode(true);
-            n.querySelector("img").src = "https://ui-avatars.com/api/?size=60&background=random&name=" + encodeURIComponent(guest);
+            n.querySelector("[data-i]").textContent = guest.trim()[0]?.toUpperCase() || "?";
             n.querySelector("[data-n]").textContent = guest;
-            n.querySelector("[data-a]").textContent = $("#rAtt").value;
-            n.querySelector("[data-m]").textContent = $("#rMsg").value;
+            n.querySelector("[data-a]").textContent = attendance;
+            n.querySelector("[data-m]").textContent = message;
             n.querySelector("[data-t]").textContent = new Date().toLocaleString("id-ID", { dateStyle: "long", timeStyle: "short" });
             $("#noComments").hidden = true;
             $("#comments").prepend(n);
-            e.target.reset();
-            $("#rName").value = guest;
+            $("#cCount").textContent = $$("#comments article").length;
+        }
+        form.addEventListener("submit", async e => {
+            e.preventDefault();
+            const body = {
+                name: guest,
+                phone: $("#rCode").value + $("#rPhone").value.replace(/^0/, ""),
+                attendance: new FormData(form).get("att"),
+                message: $("#rMsg").value.trim(),
+            };
+            send.disabled = true; send.textContent = "Mengirim…"; status.textContent = "";
+            try {
+                if (RSVP_ENDPOINT) {
+                    const r = await fetch(RSVP_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+                    if (!r.ok) throw new Error(r.status);
+                }
+                addComment(body);
+                status.textContent = RSVP_ENDPOINT ? "Terima kasih, konfirmasi Anda sudah kami terima." : "Mode contoh: ucapan hanya tampil di halaman ini.";
+                form.reset();
+                showRsvpTab(1, true);
+            } catch {
+                status.textContent = "Gagal mengirim. Periksa koneksi lalu coba lagi.";
+            } finally {
+                send.disabled = false; send.textContent = "Kirim";
+            }
         });
     </script>
 </body>
