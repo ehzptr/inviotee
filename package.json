@@ -10,7 +10,7 @@
     "dev:html": "node build.mjs && node --watch-path=src build.mjs",
     "dev:server": "node scripts/dev-server.mjs",
     "dev": "concurrently \"bun run dev:css\" \"bun run dev:html\" \"bun run dev:server\"",
-"check": "node scripts/check-css.mjs && node scripts/check-js.mjs"
+"check": "node scripts/check-css.mjs && node scripts/check-js.mjs && node scripts/check-build.mjs"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",

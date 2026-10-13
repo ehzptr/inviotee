@@ -1,7 +1,7 @@
 // content/<theme>.json + <theme>/<mode>.html templates -> dist/<theme>/<mode>.html
 // Run: node build.mjs [theme]. Themes without a content file (batak-dayak stub) are skipped.
-import { readFile, writeFile, mkdir, cp, readdir } from "node:fs/promises";
-import { existsSync } from "node:fs";
+import { readFile, writeFile, mkdir, cp, readdir, rm } from "node:fs/promises";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 const SRC = "src", OUT = "dist";
@@ -50,7 +50,15 @@ const fragments = {
 </div>`).join("\n"),
 };
 
-function render(html, c, vars, file) {
+function render(html, c, vars, file, theme) {
+    // partials: {{> name.ext}} is replaced by src/<theme>/partials/name.ext, else src/shared/name.ext (raw text, not escaped)
+    html = html.replace(/\{\{>\s*([\w./-]+)\s*\}\}/g, (_, name) => {
+        for (const dir of [join(SRC, theme, "partials"), join(SRC, "shared")]) {
+            const p = join(dir, name);
+            if (existsSync(p)) return readFileSync(p, "utf8");
+        }
+        throw new Error(`${file}: unknown partial ${name}`);
+    });
     // pass 1: fragments (their text may itself contain {{scalars}}); pass 2: scalars and {{a.b}} lookups
     html = html.replace(/\{\{@(\w+)([^}]*)\}\}/g, (_, name, attrs) => {
         if (!fragments[name]) throw new Error(`${file}: unknown fragment @${name}`);
@@ -70,10 +78,11 @@ for (const theme of await readdir(SRC)) {
     const content = JSON.parse(await readFile(contentFile, "utf8"));
     const { modes } = JSON.parse(await readFile(join(SRC, theme, "theme.json"), "utf8"));
     const vars = scalars(content);
+    await rm(join(OUT, theme), { recursive: true, force: true });
     await mkdir(join(OUT, theme), { recursive: true });
     for (const mode of modes) {
         const file = join(SRC, theme, `${mode}.html`);
-        const html = render(await readFile(file, "utf8"), content, vars, file);
+        const html = render(await readFile(file, "utf8"), content, vars, file, theme);
         await writeFile(join(OUT, theme, `${mode}.html`), html);
         console.log(`built ${OUT}/${theme}/${mode}.html`);
     }
