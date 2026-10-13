@@ -13,6 +13,12 @@
     --color-seal: #9A2B1E;     /* Chinese red, used sparingly: ampersands */
     --font-sans: "Outfit", sans-serif;
     --font-display: "Cormorant Garamond", serif;
+    --motion-fast: 120ms;
+    --motion-ui: 200ms;
+    --motion-slow: 300ms;
+    --ease-out-ui: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out-ui: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 @layer base {
@@ -59,3 +65,69 @@
 
 /* scroll mode keeps 44px tap targets; swipe/zoom use the compact 32px tlink */
 #page .tlink { min-height: 2.75rem; }
+
+@media (prefers-reduced-motion: reduce) {
+    .btn,
+    .btn-ghost,
+    .nav-chip,
+    .act-btn {
+        transition-property: color, background-color, border-color, opacity;
+    }
+
+    .btn:hover,
+    .btn-ghost:hover,
+    .nav-chip:hover,
+    .act-btn:hover,
+    .btn:active,
+    .btn-ghost:active,
+    .nav-chip:active,
+    .act-btn:active {
+        transform: none;
+    }
+}
+
+@media (hover: none), (pointer: coarse) {
+    .btn:hover,
+    .btn-ghost:hover,
+    .nav-chip:hover,
+    .act-btn:hover {
+        transform: none;
+    }
+}
+
+.btn {
+    transition-duration: var(--motion-ui);
+    transition-timing-function: var(--ease-out-ui);
+}
+.btn-ghost {
+    transition-duration: var(--motion-ui);
+    transition-timing-function: var(--ease-out-ui);
+}
+.act-btn {
+    transition-duration: var(--motion-ui);
+    transition-timing-function: var(--ease-out-ui);
+}
+.nav-chip {
+    transition-duration: var(--motion-slow);
+    transition-timing-function: var(--ease-out-ui);
+}
+
+/* desktop shell: keep swipe/zoom compositions intact, but make the scaled canvas feel intentionally framed rather than floating in empty browser chrome */
+@media (min-width: 1280px) {
+    #viewport {
+        background:
+            radial-gradient(ellipse 75% 60% at 50% 50%, transparent 30%, rgb(87 62 40 / .10) 100%),
+            rgb(245 235 217 / 1);
+    }
+
+    #stage {
+        border-radius: 32px;
+        box-shadow: 0 42px 100px -52px rgb(87 62 40 / .60);
+        overflow: hidden;
+    }
+
+    #page {
+        border-radius: 30px;
+        box-shadow: 0 34px 80px -50px rgb(87 62 40 / .35);
+    }
+}

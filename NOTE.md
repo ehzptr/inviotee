@@ -1,0 +1,1 @@
+[ ] Create SKILL.md in root project for creating new theme using AI

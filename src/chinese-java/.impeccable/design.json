@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-13T11:48:13.120Z",
+  "title": "Design System: inviotee",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Ink Brown",
+        "canonical": "#573E28",
+        "tonalRamp": [
+          "#2f2014",
+          "#3e2b1b",
+          "#4d3622",
+          "#573E28",
+          "#6a4c31",
+          "#7f6040",
+          "#9a7750",
+          "#b8925f"
+        ]
+      },
+      "accent": {
+        "role": "accent",
+        "displayName": "Antique Gold",
+        "canonical": "#D1A046",
+        "tonalRamp": [
+          "#5f4920",
+          "#735826",
+          "#896a2c",
+          "#9f7c32",
+          "#b8923a",
+          "#d1a646",
+          "#e0bb5f",
+          "#ebcd80"
+        ]
+      },
+      "seal": {
+        "role": "accent",
+        "displayName": "Seal Red",
+        "canonical": "#9A2B1E",
+        "tonalRamp": [
+          "#3d110c",
+          "#521711",
+          "#6a1d15",
+          "#83241a",
+          "#9a2b1e",
+          "#b03425",
+          "#c8402f",
+          "#dc5b45"
+        ]
+      },
+      "background": {
+        "role": "background",
+        "displayName": "Cream",
+        "canonical": "#F3E1CF",
+        "tonalRamp": [
+          "#b8946f",
+          "#c9a882",
+          "#d8ba95",
+          "#e6cbac",
+          "#f3e1cf",
+          "#f7e9db",
+          "#faf2e9",
+          "#fdfaf5"
+        ]
+      },
+      "surface": {
+        "role": "surface",
+        "displayName": "Paper",
+        "canonical": "#FBF4EA",
+        "tonalRamp": [
+          "#c9b69b",
+          "#d5c4ae",
+          "#e1d2be",
+          "#ecdfcf",
+          "#f5ede0",
+          "#faf5ed",
+          "#fcf9f4",
+          "#fefcf9"
+        ]
+      },
+      "text": {
+        "role": "primary",
+        "displayName": "Ink Brown Text",
+        "canonical": "#573E28",
+        "tonalRamp": [
+          "#2f2014",
+          "#3e2b1b",
+          "#4d3622",
+          "#573E28",
+          "#6a4c31",
+          "#7f6040",
+          "#9a7750",
+          "#b8925f"
+        ]
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Muted Brown",
+        "canonical": "#6B5440",
+        "tonalRamp": [
+          "#3a2e22",
+          "#4b3b2d",
+          "#5b4838",
+          "#6b5440",
+          "#7d644d",
+          "#90765d",
+          "#a68a70",
+          "#bda289"
+        ]
+      },
+      "text-gold": {
+        "role": "accent",
+        "displayName": "Text Gold",
+        "canonical": "#7D5A10",
+        "tonalRamp": [
+          "#312306",
+          "#433009",
+          "#563e0c",
+          "#6a4c10",
+          "#7d5a10",
+          "#946d14",
+          "#ad821a",
+          "#c89b22"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero couple names and invitation headlines."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles and generated index headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Dialogs, featured names, and short calls to action."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Invitation copy, forms, comments, and most UI text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Controls, navigation, metadata, and status text."
+      }
+    },
+    "shadows": [
+      {
+        "name": "button",
+        "value": "0 10px 24px -10px rgb(87 62 40 / .55)",
+        "purpose": "Resting elevation for primary buttons."
+      },
+      {
+        "name": "floating",
+        "value": "0 8px 24px -8px rgb(87 62 40 / .5)",
+        "purpose": "Floating surfaces and readable panels."
+      },
+      {
+        "name": "dialog-backdrop",
+        "value": "rgb(40 26 14 / .6)",
+        "purpose": "Modal and lightbox scrim."
+      }
+    ],
+    "motion": [
+      {
+        "name": "motion-fast",
+        "value": "120ms",
+        "purpose": "Quick feedback such as press states."
+      },
+      {
+        "name": "motion-ui",
+        "value": "200ms",
+        "purpose": "Standard button and popover transitions."
+      },
+      {
+        "name": "motion-slow",
+        "value": "300ms",
+        "purpose": "Navigation and grouped entrance timing."
+      },
+      {
+        "name": "ease-out-ui",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Default enter/exit easing for UI."
+      },
+      {
+        "name": "ease-in-out-ui",
+        "value": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "purpose": "On-screen movement and morphing."
+      },
+      {
+        "name": "ease-drawer",
+        "value": "cubic-bezier(0.32, 0.72, 0, 1)",
+        "purpose": "Drawer-style entrances when added."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "480px",
+        "purpose": "Maximum content width for invitation pages."
+      },
+      {
+        "name": "touch",
+        "value": "hover: none, pointer: coarse",
+        "purpose": "Hover gating and tap targets."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Solid ink pill button for primary invitation actions.",
+      "html": "<button class=\"ds-btn-primary\">Simpan</button>",
+      "css": ".ds-btn-primary { background: #573E28; color: #FBF4EA; font-family: \"Outfit\", system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.01em; line-height: 1.4; padding: 16px 24px; min-height: 44px; border: none; border-radius: 9999px; box-shadow: 0 10px 24px -10px rgb(87 62 40 / .55); transition: background-color 200ms cubic-bezier(0.23, 1, 0.32, 1), transform 200ms cubic-bezier(0.23, 1, 0.32, 1); cursor: pointer; } .ds-btn-primary:hover { background: #6a4c31; transform: translateY(-2px); } .ds-btn-primary:active { transform: translateY(0) scale(0.97); } .ds-btn-primary:focus-visible { outline: 2px solid #7D5A10; outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Pill button with a paper surface and ink border.",
+      "html": "<button class=\"ds-btn-ghost\">Batal</button>",
+      "css": ".ds-btn-ghost { background: #FBF4EA; color: #573E28; font-family: \"Outfit\", system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.01em; line-height: 1.4; padding: 12px 20px; min-height: 44px; border: 1px solid rgb(87 62 40 / .3); border-radius: 9999px; transition: background-color 200ms cubic-bezier(0.23, 1, 0.32, 1), transform 200ms cubic-bezier(0.23, 1, 0.32, 1); cursor: pointer; } .ds-btn-ghost:hover { background: rgb(87 62 40 / .05); } .ds-btn-ghost:active { transform: scale(0.97); } .ds-btn-ghost:focus-visible { outline: 2px solid #7D5A10; outline-offset: 2px; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Rounded text field on a paper surface with a gold focus border.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Nama tamu\">",
+      "css": ".ds-input { background: #FBF4EA; color: #573E28; font-family: \"Outfit\", system-ui, sans-serif; font-size: 0.875rem; line-height: 1.5; padding: 10px 14px; min-height: 40px; border: 1px solid rgb(87 62 40 / .25); border-radius: 12px; transition: border-color 200ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-input:focus { border-color: #7D5A10; outline: none; } .ds-input:disabled { background: rgb(87 62 40 / .05); color: #6B5440; }"
+    },
+    {
+      "name": "Nav Chip",
+      "kind": "nav",
+      "refersTo": "nav-chip",
+      "description": "Fixed bottom navigation chip with muted default and paper active state.",
+      "html": "<button class=\"ds-nav-chip\" aria-current=\"true\">Utama</button>",
+      "css": ".ds-nav-chip { background: transparent; color: #6B5440; font-family: \"Outfit\", system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.01em; line-height: 1.4; padding: 8px 12px; min-height: 56px; border: none; border-radius: 24px; transition: color 300ms cubic-bezier(0.23, 1, 0.32, 1), background-color 300ms cubic-bezier(0.23, 1, 0.32, 1); cursor: pointer; } .ds-nav-chip[aria-current=\"true\"] { color: #FBF4EA; background: #573E28; } .ds-nav-chip:focus-visible { outline: 2px solid #7D5A10; outline-offset: 2px; }"
+    },
+    {
+      "name": "QR Dialog",
+      "kind": "custom",
+      "refersTo": "qr-dialog",
+      "description": "Centered modal dialog for guest QR display.",
+      "html": "<dialog class=\"ds-dialog\"><form class=\"ds-dialog-form\"><button class=\"ds-dialog-close\" aria-label=\"Tutup\">X</button><div class=\"ds-qr\"></div></form></dialog>",
+      "css": ".ds-dialog { max-width: min(92vw, 360px); background: #FBF4EA; color: #573E28; border: none; border-radius: 24px; padding: 0; } .ds-dialog::backdrop { background: rgb(40 26 14 / .6); } .ds-dialog-form { position: relative; padding: 24px; text-align: center; } .ds-dialog-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border: none; border-radius: 9999px; background: transparent; color: #573E28; cursor: pointer; } .ds-qr { min-height: 180px; margin: 16px auto 0; width: fit-content; }"
+    },
+    {
+      "name": "Loader",
+      "kind": "custom",
+      "refersTo": "loader",
+      "description": "Full-screen cream overlay that holds a padded monogram before invitation content is ready.",
+      "html": "<div class=\"loader\"><p class=\"loader__monogram\">LC</p><span class=\"loader__rule\"></span></div>",
+      "css": ".loader { background: #F3E1CF; color: #573E28; display: grid; place-items: center; min-height: 100vh; padding: 24px; } .loader__monogram { font-family: \"Cormorant Garamond\", serif; font-size: 2.5rem; font-weight: 600; font-style: italic; line-height: 1; animation: loader-pulse 1.2s ease-in-out infinite; } .loader__rule { display: block; margin: 16px auto 0; height: 1px; width: 96px; background: #D1A046; } @keyframes loader-pulse { 50% { opacity: 0.5; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Silk Garden Sanctuary",
+    "overview": "inviotee is a warm, ceremonial invitation system built as narrow mobile pages with cream and paper surfaces, ink typography, restrained gold accents, and Chinese-Javanese ornament used as framing rather than decoration. Formal serif headlines sit over compact UI copy, with clear focus states, tap targets, and brief gated motion.",
+    "keyCharacteristics": [
+      "Warm cream and paper surfaces",
+      "Brown ink typography with antique gold accents",
+      "Mobile-first 480px frame",
+      "Pill buttons and modest container radii",
+      "Sparse shadows and soft rings",
+      "Motion under 300ms with reduced-motion support"
+    ],
+    "rules": [
+      {
+        "name": "The One Voice Rule",
+        "body": "Ink carries hierarchy and action; gold is rare enough to remain meaningful, and seal red is reserved for ornamental moments.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mobile Rhythm Rule",
+        "body": "Keep body copy compact and generous in line height so guest flows remain readable on narrow screens.",
+        "section": "typography"
+      },
+      {
+        "name": "The Soft Paper Rule",
+        "body": "Surfaces are flat by default. Soft shadow and rings appear for separation, not decoration.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use cream, paper, ink, and gold as the core palette, with seal red only as ornament.",
+      "Do keep the mobile-first 480px frame and 44px tap targets.",
+      "Do use Cormorant Garamond for display and Outfit for UI text.",
+      "Do keep UI motion under 300ms and gated for reduced motion and coarse pointers.",
+      "Do preserve hover/focus feedback, including for reduced-motion users."
+    ],
+    "donts": [
+      "Don't introduce unrelated saturated colors into the warm paper palette.",
+      "Don't use loud or excessive decorative motion.",
+      "Don't remove hover or focus feedback entirely.",
+      "Don't hardcode guest-specific content that belongs in src/content/<theme>.json.",
+      "Don't treat built dist/ artifacts as source."
+    ]
+  }
+}
