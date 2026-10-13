@@ -11,7 +11,7 @@ Copy this `plans/` folder to the repo root.
 | 001  | Build the site in CI and stop committing `dist/` (also makes sure `src/chinese-java/theme.json` exists) | P1 | S | — | DONE |
 | 004  | Make the "Lokasi" button work in scroll mode | P1 | S | — | DONE |
 | 003  | Serve compiled Tailwind CSS instead of the browser CDN runtime | P1 | M | — | DONE |
-| 002  | Generate `dist/index.html` that links every built theme and mode | P1 | S | 003 | TODO |
+| 002  | Generate `dist/index.html` that links every built theme and mode | P1 | S | 003 | DONE |
 | 008  | Clean theme output on every build and add a build sanity check (also in CI) | P2 | S | 001, 003 | DONE |
 | 006  | Remove copy-pasted markup and JS across the three mode templates via build-time partials | P2 | L | 003 | DONE |
 | 005  | Generate the guest QR code from the guest's own invitation link | P2 | M | 006 | DONE |

@@ -71,12 +71,27 @@ function render(html, c, vars, file, theme) {
     });
 }
 
+const indexHtml = themes => `<!doctype html>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Undangan Pernikahan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Outfit:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="main.css"></head>
+<body class="mx-auto max-w-[480px] px-[34px] py-16">
+<h1 class="font-display text-[40px] font-semibold italic leading-none text-gold-ink">Undangan</h1>
+${themes.map(t => `<section class="mt-8"><h2 class="font-display text-[28px] font-semibold italic">${esc(t.label)}</h2><p class="mb-3 text-sm text-muted">${esc(t.description)}</p><div class="flex flex-wrap gap-2">${t.modes.map(m => `<a class="btn-ghost" href="${esc(t.name)}/${esc(m)}.html?to=Nama%20Tamu">${esc(m)}</a>`).join("\n")}</div></section>`).join("\n")}
+</body></html>
+`;
+
+const built = [];
 const only = process.argv[2];
 for (const theme of await readdir(SRC)) {
     const contentFile = join(SRC, "content", `${theme}.json`);
     if ((only && theme !== only) || !existsSync(contentFile)) continue;
     const content = JSON.parse(await readFile(contentFile, "utf8"));
-    const { modes } = JSON.parse(await readFile(join(SRC, theme, "theme.json"), "utf8"));
+    const meta = JSON.parse(await readFile(join(SRC, theme, "theme.json"), "utf8"));
+    const { modes } = meta;
+    built.push({ name: theme, label: meta.label ?? theme, description: meta.description ?? "", modes });
     const vars = scalars(content);
     await rm(join(OUT, theme), { recursive: true, force: true });
     await mkdir(join(OUT, theme), { recursive: true });
@@ -88,3 +103,4 @@ for (const theme of await readdir(SRC)) {
     }
     await cp(join(SRC, theme, "assets"), join(OUT, theme, "assets"), { recursive: true });
 }
+if (!only && built.length) await writeFile(join(OUT, "index.html"), indexHtml(built));
