@@ -17,59 +17,12 @@
     <link rel="icon"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23573E28'/%3E%3Ctext x='16' y='23' font-size='21' text-anchor='middle' fill='%23D1A046' font-family='serif' font-style='italic'%3E%26%3C/text%3E%3C/svg%3E">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Outfit:wght@400;500;600&display=swap">
-    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.0.3/src/fill/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style type="text/tailwindcss">
-        @theme {
-            --color-cream: #F3E1CF;
-            --color-paper: #FBF4EA;
-            --color-ink: #573E28;
-            --color-muted: #6B5440;    /* 5.5:1 on cream; replaces ink/60 (3.4:1) */
-            --color-gold: #D1A046;
-            --color-gold-ink: #7D5A10; /* gold for text: 4.9:1 on cream */
-            --color-seal: #9A2B1E;     /* Chinese red, used sparingly: ampersands */
-            --font-sans: "Outfit", sans-serif;
-            --font-display: "Cormorant Garamond", serif;
-        }
-        /* z scale: grain 0 · frames 1 · slides 10 · tools 20 · loader 50 */
-        @layer base {
-            html, body { height: 100%; overflow: hidden; background: var(--color-cream); }
-            body { font-family: var(--font-sans); color: var(--color-ink); -webkit-tap-highlight-color: transparent; }
-            h1, h2, h3, blockquote { text-wrap: balance; }
-            p { text-wrap: pretty; }
-            ::selection { background: color-mix(in srgb, var(--color-gold) 45%, transparent); }
-            :focus-visible { outline: 2px solid #7D5A10; outline-offset: 2px; }
-            dialog::backdrop { background: rgb(40 26 14 / .6); }
-            button { cursor: pointer; }
-            #stage { touch-action: none; }
-            [data-scroll] { touch-action: pan-y; }
-            .field:user-invalid { border-color: #a3402a; }
-        }
-        @utility btn { @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-ink px-6 text-sm font-medium text-paper shadow-[0_10px_24px_-10px_rgb(87_62_40/.55)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#6a4c31] active:translate-y-0 active:scale-[.97] disabled:opacity-60; }
-        @utility btn-ghost { @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-ink/30 px-5 text-sm font-medium text-ink transition duration-200 hover:bg-ink/5 active:scale-[.97]; }
-        @utility tlink { @apply inline-flex min-h-8 items-center gap-1.5 text-sm font-medium text-gold-ink underline decoration-gold/60 underline-offset-4 transition-colors hover:text-ink; }
-        @utility field { @apply w-full rounded-xl border border-ink/25 bg-white px-3.5 py-2.5 text-sm text-ink transition-colors focus:border-gold-ink disabled:bg-ink/5 disabled:text-muted; }
-        @utility grain { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .34 0 0 0 0 .24 0 0 0 0 .16 0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
-
-        /* solid floating surface: readable over the patterned background */
-        @utility float { @apply bg-paper ring-1 ring-ink/25 shadow-[0_8px_24px_-8px_rgb(87_62_40/.5)]; }
-        @utility nav-chip { @apply relative z-10 flex h-14 w-full flex-col items-center justify-center gap-0.5 text-xs font-medium text-muted transition-colors duration-300 aria-[current=true]:text-paper; }
-        @utility act-btn { @apply grid size-12 place-items-center rounded-full bg-ink/10 text-ink transition duration-200 hover:bg-ink/15 active:scale-95 aria-pressed:bg-ink aria-pressed:text-paper; }
-    </style>
+    {{> head-assets.html}}
+    <style>html,body{height:100%;overflow:hidden}</style>
 </head>
 
 <body>
-    <!-- loader -->
-    <div id="loader" class="fixed inset-0 z-50 grid place-items-center bg-cream" style="background:#F3E1CF">
-        <div class="text-center">
-            <p class="animate-pulse font-display text-4xl italic text-ink">{{short}}</p>
-            <span class="mx-auto mt-4 block h-px w-24 bg-gold"></span>
-        </div>
-    </div>
+    {{> loader.html}}
 
     <audio id="music" loop preload="none" src="assets/music.wav"></audio>
 
@@ -307,37 +260,7 @@
                         <h2 data-in="down"
                             class="mb-4 font-display text-[40px] font-semibold italic leading-none text-gold-ink">Galeri
                         </h2>
-                        <div class="grid w-full auto-rows-[104px] grid-cols-3 gap-1.5">
-                            <button data-in="zoom" data-lb
-                                class="col-span-2 row-span-3 overflow-hidden rounded-t-[117px] rounded-b-xl"><img
-                                    src="assets/photo-1.svg"
-                                    alt="Galeri foto 1" loading="lazy" decoding="async"
-                                    class="size-full object-cover"></button>
-                            <button data-in="zoom" data-lb class="overflow-hidden rounded-lg"><img
-                                    src="assets/photo-2.svg"
-                                    alt="Galeri foto 2" loading="lazy" decoding="async"
-                                    class="size-full object-cover"></button>
-                            <button data-in="zoom" data-lb class="overflow-hidden rounded-lg"><img
-                                    src="assets/photo-3.svg"
-                                    alt="Galeri foto 3" loading="lazy" decoding="async"
-                                    class="size-full object-cover"></button>
-                            <button data-in="zoom" data-lb class="overflow-hidden rounded-lg"><img
-                                    src="assets/photo-4.svg"
-                                    alt="Galeri foto 4" loading="lazy" decoding="async"
-                                    class="size-full object-cover"></button>
-                            <button data-in="zoom" data-lb class="overflow-hidden rounded-lg"><img
-                                    src="assets/photo-5.svg"
-                                    alt="Galeri foto 5" loading="lazy" decoding="async"
-                                    class="size-full object-cover"></button>
-                            <button data-in="zoom" data-lb class="overflow-hidden rounded-lg"><img
-                                    src="assets/photo-6.svg"
-                                    alt="Galeri foto 6" loading="lazy" decoding="async"
-                                    class="size-full object-cover"></button>
-                            <button data-in="zoom" data-lb class="overflow-hidden rounded-lg"><img
-                                    src="assets/photo-7.svg"
-                                    alt="Galeri foto 7" loading="lazy" decoding="async"
-                                    class="size-full object-cover"></button>
-                        </div>
+                        {{> gallery-grid.html}}
                     </section>
                 </div>
                 <div class="panel group absolute left-0 top-0 w-[414px]" data-i="6" style="height:var(--H)">
@@ -423,12 +346,7 @@
                                 <p class="text-sm text-muted">Konfirmasi paling lambat {{rsvpDeadline}}</p>
                             </form>
                             <div data-rp role="tabpanel" hidden class="flex min-h-0 flex-1 flex-col">
-                                <p class="mb-3 font-display text-lg italic leading-snug">&ldquo;Semoga Allah
-                                    memberkahimu di
-                                    waktu bahagia dan memberkahimu di waktu susah, dan mengumpulkan kalian berdua dalam
-                                    kebaikan.&rdquo;<span class="mt-1 block font-sans text-sm not-italic text-muted">HR.
-                                        Abu
-                                        Daud</span></p>
+                                <p class="mb-3 font-display text-lg italic leading-snug">&ldquo;{{wish.text}}&rdquo;<span class="mt-1 block font-sans text-sm not-italic text-muted">{{wish.source}}</span></p>
                                 <div id="comments" data-scroll
                                     class="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto overscroll-contain border-t border-ink/10 pt-3 [scrollbar-width:thin]">
                                     <p id="noComments" class="text-sm text-muted">Belum ada ucapan. Jadilah yang
@@ -550,58 +468,11 @@
         </main>
     </div>
 
-    <!-- QR -->
-    <dialog id="dlgQr" class="m-auto w-[min(92vw,360px)] rounded-3xl bg-paper p-0 text-ink">
-        <form method="dialog" class="relative p-6 text-center">
-            <button aria-label="Tutup"
-                class="absolute right-3 top-3 grid size-10 place-items-center rounded-full transition hover:bg-ink/10"><i
-                    class="ph-fill ph-x text-lg"></i></button>
-            <div class="mx-auto w-fit pt-4"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="180"
-                    height="180" role="img" aria-label="QR code tamu" viewBox="0 0 180 180">
-                    <rect x="0" y="0" width="180" height="180" role="img" aria-label="QR code tamu" fill="#ffffff">
-                    </rect>
-                    <g transform="scale(7.2)">
-                        <g transform="translate(0,0)">
-                            <path fill-rule="evenodd"
-                                d="M8 0L8 1L9 1L9 2L10 2L10 3L11 3L11 1L13 1L13 0L11 0L11 1L9 1L9 0ZM14 0L14 1L15 1L15 0ZM16 0L16 1L17 1L17 0ZM12 2L12 4L11 4L11 5L10 5L10 4L9 4L9 5L10 5L10 8L9 8L9 6L8 6L8 8L9 8L9 10L8 10L8 11L7 11L7 10L6 10L6 11L5 11L5 8L3 8L3 9L4 9L4 12L5 12L5 13L3 13L3 10L2 10L2 8L0 8L0 11L1 11L1 12L0 12L0 17L1 17L1 15L3 15L3 16L2 16L2 17L7 17L7 16L6 16L6 15L8 15L8 18L9 18L9 20L8 20L8 22L9 22L9 20L10 20L10 23L8 23L8 25L9 25L9 24L10 24L10 23L11 23L11 20L10 20L10 19L12 19L12 21L14 21L14 24L13 24L13 25L15 25L15 22L16 22L16 23L17 23L17 22L19 22L19 21L21 21L21 16L22 16L22 18L24 18L24 19L23 19L23 22L20 22L20 23L18 23L18 25L19 25L19 24L21 24L21 25L22 25L22 24L24 24L24 25L25 25L25 18L24 18L24 16L25 16L25 14L24 14L24 13L25 13L25 10L24 10L24 9L25 9L25 8L24 8L24 9L19 9L19 8L18 8L18 9L19 9L19 10L16 10L16 9L17 9L17 6L16 6L16 8L14 8L14 7L15 7L15 6L14 6L14 5L15 5L15 4L16 4L16 5L17 5L17 3L15 3L15 4L14 4L14 2ZM12 4L12 5L11 5L11 7L12 7L12 9L10 9L10 10L9 10L9 11L10 11L10 10L12 10L12 11L13 11L13 13L11 13L11 12L10 12L10 13L9 13L9 14L8 14L8 12L7 12L7 11L6 11L6 12L7 12L7 13L6 13L6 14L3 14L3 15L4 15L4 16L5 16L5 15L6 15L6 14L8 14L8 15L9 15L9 14L10 14L10 15L11 15L11 14L14 14L14 13L16 13L16 12L17 12L17 13L18 13L18 14L19 14L19 15L20 15L20 16L21 16L21 15L20 15L20 13L21 13L21 14L23 14L23 13L24 13L24 12L21 12L21 10L20 10L20 11L19 11L19 13L18 13L18 11L15 11L15 10L14 10L14 11L13 11L13 10L12 10L12 9L14 9L14 8L13 8L13 7L14 7L14 6L13 6L13 7L12 7L12 5L14 5L14 4ZM6 8L6 9L7 9L7 8ZM22 10L22 11L24 11L24 10ZM14 11L14 12L15 12L15 11ZM1 13L1 14L2 14L2 13ZM16 14L16 16L15 16L15 15L12 15L12 16L9 16L9 17L14 17L14 18L12 18L12 19L13 19L13 20L14 20L14 19L16 19L16 16L18 16L18 15L17 15L17 14ZM23 15L23 16L24 16L24 15ZM14 16L14 17L15 17L15 16ZM17 17L17 20L20 20L20 17ZM18 18L18 19L19 19L19 18ZM12 22L12 23L13 23L13 22ZM21 23L21 24L22 24L22 23ZM16 24L16 25L17 25L17 24ZM0 0L0 7L7 7L7 0ZM1 1L1 6L6 6L6 1ZM2 2L2 5L5 5L5 2ZM18 0L18 7L25 7L25 0ZM19 1L19 6L24 6L24 1ZM20 2L20 5L23 5L23 2ZM0 18L0 25L7 25L7 18ZM1 19L1 24L6 24L6 19ZM2 20L2 23L5 23L5 20Z"
-                                fill="#000000"></path>
-                        </g>
-                    </g>
-                </svg></div>
-            <hr class="my-4 border-dashed border-ink/20">
-            <p class="text-sm text-muted">Nama</p>
-            <p data-guest class="mb-2 font-display text-2xl font-semibold">Nama Tamu</p>
-            <p class="text-sm text-muted">Grup</p>
-            <p data-group>VIP</p>
-        </form>
-    </dialog>
+    {{> qr-dialog.html}}
 
-    <template id="tplComment">
-        <article class="flex gap-3 border-b border-ink/10 pb-3 last:border-0">
-            <span data-i
-                class="grid size-8 shrink-0 place-items-center rounded-lg bg-gold/25 text-sm font-semibold text-gold-ink"></span>
-            <div class="min-w-0 text-sm">
-                <p class="font-semibold"><span data-n></span> <span data-a
-                        class="ml-1 rounded bg-gold/20 px-1.5 py-0.5 text-xs font-medium text-gold-ink"></span></p>
-                <p data-m class="break-words"></p>
-                <small data-t class="text-muted"></small>
-            </div>
-        </article>
-    </template>
+    {{> tpl-comment.html}}
 
-    <!-- lightbox -->
-    <dialog id="dlgLb" class="m-0 size-full max-h-none max-w-none bg-black/85 p-0">
-        <img id="lbImg" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="size-full object-contain">
-        <form method="dialog"><button aria-label="Tutup"
-                class="fixed right-4 top-4 grid size-12 place-items-center rounded-full bg-white/25 text-white transition hover:bg-white/40"><i
-                    class="ph-fill ph-x text-2xl"></i></button></form>
-        <button id="lbPrev" aria-label="Sebelumnya"
-            class="fixed left-4 top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-white/25 text-white transition hover:bg-white/40"><i
-                class="ph-fill ph-caret-left text-2xl"></i></button>
-        <button id="lbNext" aria-label="Berikutnya"
-            class="fixed right-4 top-1/2 grid size-12 -translate-y-1/2 place-items-center rounded-full bg-white/25 text-white transition hover:bg-white/40"><i
-                class="ph-fill ph-caret-right text-2xl"></i></button>
-    </dialog>
+    {{> lightbox-dialog.html}}
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
@@ -612,13 +483,8 @@
         const $ = (s, r = document) => r.querySelector(s);
         const $$ = (s, r = document) => [...r.querySelectorAll(s)];
         const k = matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 1; // 0 = no motion
-        const RSVP_ENDPOINT = ""; // POST JSON {name, phone, attendance, message}; empty = demo mode, comments stay on this page
 
-        /* guest from ?to=Nama&group=VIP */
-        const qs = new URLSearchParams(location.search);
-        const guest = qs.get("to") || "Nama Tamu";
-        $$("[data-guest]").forEach(e => e.textContent = guest);
-        $$("[data-group]").forEach(e => e.textContent = qs.get("group") || "VIP");
+        {{> guest.js}}
 
         /* ---------- world model ----------
            10 stations on a snake path (3 per row). Camera = {x, y} world point at screen centre + zoom s.
@@ -844,25 +710,7 @@
             if (e.key === "ArrowUp" || e.key === "ArrowLeft") swipe(-1);
         });
 
-        /* music */
-        const music = $("#music"), btnMusic = $("#btnMusic");
-        let userMuted = false;
-        const setMusicIcon = on => {
-            btnMusic.firstElementChild.className = "ph-fill text-xl " + (on ? "ph-speaker-high" : "ph-speaker-slash");
-            btnMusic.setAttribute("aria-pressed", on);
-        };
-        function playMusic() {
-            music.volume = 0;
-            music.play().then(() => { gsap.to(music, { volume: 1, duration: 1.5, overwrite: true }); setMusicIcon(true); }).catch(() => setMusicIcon(false));
-        }
-        btnMusic.addEventListener("click", () => {
-            userMuted = !music.paused;
-            if (userMuted) { music.pause(); setMusicIcon(false); } else playMusic();
-        });
-        document.addEventListener("visibilitychange", () => {
-            if (document.hidden) { music.pause(); stopAuto(); }
-            else if (opened && !userMuted) playMusic();
-        });
+        {{> music.js}}
 
         /* open invitation */
         function openInvitation() {
@@ -914,93 +762,21 @@
         gsap.set(segs, { autoAlpha: .45 });
         fit(); layout(); place(); mark(0);
 
-        /* lightbox */
-        const shots = $$("[data-lb] img");
-        let lb = 0;
-        const showShot = i => { lb = gsap.utils.wrap(0, shots.length, i); $("#lbImg").src = shots[lb].src; $("#lbImg").alt = shots[lb].alt; };
-        $$("[data-lb]").forEach((b, i) => b.addEventListener("click", () => { showShot(i); openDlg($("#dlgLb")); }));
-        $("#lbPrev").addEventListener("click", () => showShot(lb - 1));
-        $("#lbNext").addEventListener("click", () => showShot(lb + 1));
+        {{> lightbox.js}}
 
-        /* tabs: gift (transfer / kado) and rsvp (konfirmasi / ucapan) share one helper */
-        function tabset(tabSel, panelSel) {
-            const tabs = $$(tabSel), panels = $$(panelSel);
-            const show = (i, anim) => {
-                tabs.forEach((t, j) => t.setAttribute("aria-selected", j === i));
-                panels.forEach((p, j) => p.hidden = j !== i);
-                if (anim) gsap.from(panels[i], { autoAlpha: 0, y: 8, duration: .4 * k, ease: "expo.out" });
-            };
-            tabs.forEach((b, i) => b.addEventListener("click", () => { stopAuto(); show(i, true); }));
-            show(0);
-            return show;
-        }
-        tabset("[data-gift]", "[data-gift-panel]");
-        const showRsvpTab = tabset("[data-rt]", "[data-rp]");
+        {{> tabs.js}}
 
         /* the stage swipes on touch/wheel/drag; keep form fields and the ucapan list scrollable and selectable */
         $$("[data-scroll], #rsvpForm input, #rsvpForm textarea, #rsvpForm select").forEach(el =>
             ["wheel", "touchstart", "touchmove", "pointerdown"].forEach(t => el.addEventListener(t, e => e.stopPropagation(), { passive: true })));
         $("#rsvpForm").addEventListener("focusin", stopAuto); // typing must not get auto-advanced away
 
-        /* copy */
-        document.addEventListener("click", async e => {
-            const b = e.target.closest("[data-copy]");
-            if (!b) return;
-            try { await navigator.clipboard.writeText(b.dataset.copy); } catch { return; }
-            const t = b.textContent;
-            b.textContent = "Disalin";
-            setTimeout(() => b.textContent = t, 2000);
-        });
+        {{> copy.js}}
+        {{> qr.js}}
 
-        /* countdown */
-        const cd = $("#countdown"), nums = $$(".tabular-nums", cd), done = $("#cdDone"), target = new Date(cd.dataset.datetime).getTime();
-        function tick() {
-            const ms = target - Date.now();
-            cd.hidden = ms <= 0;
-            done.hidden = ms > 0;
-            const s = Math.max(0, Math.floor(ms / 1000));
-            [Math.floor(s / 86400), Math.floor(s % 86400 / 3600), Math.floor(s % 3600 / 60), s % 60].forEach((v, i) => nums[i].textContent = v);
-        }
-        tick();
-        setInterval(tick, 1000);
+        {{> countdown.js}}
 
-        /* rsvp */
-        const form = $("#rsvpForm"), status = $("#rsvpStatus"), send = $("#rsvpSend");
-        function addComment({ attendance, message }) {
-            const n = $("#tplComment").content.cloneNode(true);
-            n.querySelector("[data-i]").textContent = guest.trim()[0]?.toUpperCase() || "?";
-            n.querySelector("[data-n]").textContent = guest;
-            n.querySelector("[data-a]").textContent = attendance;
-            n.querySelector("[data-m]").textContent = message;
-            n.querySelector("[data-t]").textContent = new Date().toLocaleString("id-ID", { dateStyle: "long", timeStyle: "short" });
-            $("#noComments").hidden = true;
-            $("#comments").prepend(n);
-            $("#cCount").textContent = $$("#comments article").length;
-        }
-        form.addEventListener("submit", async e => {
-            e.preventDefault();
-            const body = {
-                name: guest,
-                phone: $("#rCode").value + $("#rPhone").value.replace(/^0/, ""),
-                attendance: new FormData(form).get("att"),
-                message: $("#rMsg").value.trim(),
-            };
-            send.disabled = true; send.textContent = "Mengirim…"; status.textContent = "";
-            try {
-                if (RSVP_ENDPOINT) {
-                    const r = await fetch(RSVP_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-                    if (!r.ok) throw new Error(r.status);
-                }
-                addComment(body);
-                status.textContent = RSVP_ENDPOINT ? "Terima kasih, konfirmasi Anda sudah kami terima." : "Mode contoh: ucapan hanya tampil di halaman ini.";
-                form.reset();
-                showRsvpTab(1, true);
-            } catch {
-                status.textContent = "Gagal mengirim. Periksa koneksi lalu coba lagi.";
-            } finally {
-                send.disabled = false; send.textContent = "Kirim";
-            }
-        });
+        {{> rsvp.js}}
     </script>
 </body>
 
