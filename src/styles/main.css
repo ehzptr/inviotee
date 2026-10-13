@@ -59,3 +59,32 @@
 
 /* scroll mode keeps 44px tap targets; swipe/zoom use the compact 32px tlink */
 #page .tlink { min-height: 2.75rem; }
+
+@media (prefers-reduced-motion: reduce) {
+    .btn,
+    .btn-ghost,
+    .nav-chip,
+    .act-btn {
+        transition-property: color, background-color, border-color, opacity;
+    }
+
+    .btn:hover,
+    .btn-ghost:hover,
+    .nav-chip:hover,
+    .act-btn:hover,
+    .btn:active,
+    .btn-ghost:active,
+    .nav-chip:active,
+    .act-btn:active {
+        transform: none;
+    }
+}
+
+@media (hover: none), (pointer: coarse) {
+    .btn:hover,
+    .btn-ghost:hover,
+    .nav-chip:hover,
+    .act-btn:hover {
+        transform: none;
+    }
+}
