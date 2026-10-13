@@ -111,3 +111,23 @@
     transition-duration: var(--motion-slow);
     transition-timing-function: var(--ease-out-ui);
 }
+
+/* desktop shell: keep swipe/zoom compositions intact, but make the scaled canvas feel intentionally framed rather than floating in empty browser chrome */
+@media (min-width: 1280px) {
+    #viewport {
+        background:
+            radial-gradient(ellipse 75% 60% at 50% 50%, transparent 30%, rgb(87 62 40 / .10) 100%),
+            rgb(245 235 217 / 1);
+    }
+
+    #stage {
+        border-radius: 32px;
+        box-shadow: 0 42px 100px -52px rgb(87 62 40 / .60);
+        overflow: hidden;
+    }
+
+    #page {
+        border-radius: 30px;
+        box-shadow: 0 34px 80px -50px rgb(87 62 40 / .35);
+    }
+}
