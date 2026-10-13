@@ -13,6 +13,12 @@
     --color-seal: #9A2B1E;     /* Chinese red, used sparingly: ampersands */
     --font-sans: "Outfit", sans-serif;
     --font-display: "Cormorant Garamond", serif;
+    --motion-fast: 120ms;
+    --motion-ui: 200ms;
+    --motion-slow: 300ms;
+    --ease-out-ui: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out-ui: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 @layer base {
@@ -87,4 +93,21 @@
     .act-btn:hover {
         transform: none;
     }
+}
+
+.btn {
+    transition-duration: var(--motion-ui);
+    transition-timing-function: var(--ease-out-ui);
+}
+.btn-ghost {
+    transition-duration: var(--motion-ui);
+    transition-timing-function: var(--ease-out-ui);
+}
+.act-btn {
+    transition-duration: var(--motion-ui);
+    transition-timing-function: var(--ease-out-ui);
+}
+.nav-chip {
+    transition-duration: var(--motion-slow);
+    transition-timing-function: var(--ease-out-ui);
 }
