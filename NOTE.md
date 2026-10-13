@@ -1,0 +1,1 @@
+buat workflow build dan pastikan ada index.html buat navigasi dan remove /dist dari push to github
