@@ -15,7 +15,7 @@ Copy this `plans/` folder to the repo root.
 | 008  | Clean theme output on every build and add a build sanity check (also in CI) | P2 | S | 001, 003 | DONE |
 | 006  | Remove copy-pasted markup and JS across the three mode templates via build-time partials | P2 | L | 003 | DONE |
 | 005  | Generate the guest QR code from the guest's own invitation link | P2 | M | 006 | DONE |
-| 009  | Move the hardcoded RSVP blessing quote into the content JSON | P3 | S | — | TODO |
+| 009  | Move the hardcoded RSVP blessing quote into the content JSON | P3 | S | — | DONE |
 | 010  | Check the size of `music.wav` and replace it with a compressed MP3 if large | P3 | S | — | TODO |
 | 007  | Remove the unused Bun/TypeScript scaffolding and write a real README | P3 | S | 001 | DONE |
 
