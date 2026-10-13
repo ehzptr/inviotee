@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none">
-  <circle cx="80" cy="80" r="76" stroke="#D1A046" stroke-width="2"/>
-  <circle cx="80" cy="80" r="68" stroke="#D1A046" stroke-width=".8" opacity=".6"/>
-  <text x="80" y="96" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="56" fill="#573E28">B & L</text>
-  <path d="M50 118 q30 12 60 0" stroke="#9A2B1E" stroke-width="1.5"/>
-  <circle cx="80" cy="30" r="3" fill="#9A2B1E"/>
-</svg>

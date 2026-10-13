@@ -1,14 +1,15 @@
 @import "tailwindcss" source(none);
 @source "../chinese-java/**/*.html";
 @source "../batak-dayak/**/*.html";
-
+@source "../../build.mjs";
+@source "../shared/**/*.js";
 @theme {
     --color-cream: #F3E1CF;
     --color-paper: #FBF4EA;
     --color-ink: #573E28;
     --color-muted: #6B5440;    /* 5.5:1 on cream; replaces ink/60 (3.4:1) */
     --color-gold: #D1A046;
-    --color-gold-ink: #8B6914; /* gold for text: 4.6:1 on cream (was #7D5A10, 3.8:1) */
+    --color-gold-ink: #7D5A10; /* gold for text: 4.9:1 on cream */
     --color-seal: #9A2B1E;     /* Chinese red, used sparingly: ampersands */
     --font-sans: "Outfit", sans-serif;
     --font-display: "Cormorant Garamond", serif;
@@ -55,3 +56,6 @@
 @utility act-btn {
     @apply grid size-12 place-items-center rounded-full bg-ink/10 text-ink transition duration-200 hover:bg-ink/15 active:scale-95 aria-pressed:bg-ink aria-pressed:text-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-ink;
 }
+
+/* scroll mode keeps 44px tap targets; swipe/zoom use the compact 32px tlink */
+#page .tlink { min-height: 2.75rem; }
