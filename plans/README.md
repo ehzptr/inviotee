@@ -18,7 +18,7 @@ Copy this `plans/` folder to the repo root.
 | 009  | Move the hardcoded RSVP blessing quote into the content JSON | P3 | S | — | DONE |
 | 010  | Check the size of `music.wav` and replace it with a compressed MP3 if large | P3 | S | — | REJECTED (already small: 15.7 KB) |
 | 011  | Delete the obsolete `NOTE.md` and stale `src/index.html` selector | P3 | S | — | DONE |
-| 012  | Remove committed dead artifacts (`repomix-output.xml`, `satumomen.html`) | P3 | S | — | TODO |
+| 012  | Remove committed dead artifacts (`repomix-output.xml`, `satumomen.html`) | P3 | S | — | DONE |
 | 013  | Cache Bun dependencies in GitHub Actions | P3 | S | — | TODO |
 | 007  | Remove the unused Bun/TypeScript scaffolding and write a real README | P3 | S | 001 | DONE |
 
