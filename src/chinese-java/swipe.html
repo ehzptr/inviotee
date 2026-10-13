@@ -473,7 +473,7 @@
             const out = slides[cur], inn = slides[n];
             cur = n;
             // slides travel with the swipe: old one leaves up, new one rises in from below
-            gsap.to(out, { autoAlpha: 0, y: -48 * dir, duration: .4 * k, ease: "power2.in", overwrite: true });
+            gsap.to(out, { autoAlpha: 0, y: -48 * dir, duration: .4 * k, ease: "power2.out", overwrite: true });
             gsap.fromTo(inn, { y: 48 * dir }, { autoAlpha: 1, y: 0, duration: .8 * k, delay: .2 * k, ease: "expo.out", overwrite: true });
             enter(inn);
             mark(n);
