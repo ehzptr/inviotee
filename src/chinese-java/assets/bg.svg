@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 736">
+  <defs><pattern id="k" width="60" height="60" patternUnits="userSpaceOnUse"><g stroke="#D1A046" stroke-width="1" fill="none" opacity=".10">
+  <ellipse cx="30" cy="15" rx="8" ry="13"/><ellipse cx="30" cy="45" rx="8" ry="13"/>
+  <ellipse cx="15" cy="30" rx="13" ry="8"/><ellipse cx="45" cy="30" rx="13" ry="8"/>
+  <circle cx="30" cy="30" r="2.2" fill="#D1A046" stroke="none"/>
+</g></pattern></defs>
+  <rect width="414" height="736" fill="#F3E1CF"/>
+  <rect width="414" height="736" fill="url(#k)"/>
+  <rect x="0" y="0" width="414" height="736" fill="url(#g)" opacity="0"/>
+  <radialGradient id="g" cx="50%" cy="40%" r="75%">
+    <stop offset="60%" stop-color="#FBF4EA" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#E8CBA6" stop-opacity=".5"/>
+  </radialGradient>
+</svg>

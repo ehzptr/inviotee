@@ -1,0 +1,19 @@
+{
+    "name": "chinese-java",
+    "label": "Chinese Java",
+    "description": "Wedding invitation Chinese Java theme (original design)",
+    "modes": [
+        "swipe",
+        "scroll",
+        "zoom"
+    ],
+    "metadata": {
+        "couple": {
+            "bride": "Larasati Wibowo",
+            "groom": "Bima Prasetya"
+        },
+        "date": "2027-02-21",
+        "venue": "Gedung Melati",
+        "venue_address": "Jl. Cempaka Putih Raya No. 17, Jakarta Pusat"
+    }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "inviotee",
+  "module": "main.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "css": "tailwindcss -i src/styles/main.css -o src/dist/main.css",
+    "build:html": "node build.mjs",
+    "build": "bun run css && bun run build:html",
+    "dev:css": "tailwindcss -i src/styles/main.css -o src/dist/main.css --watch",
+    "dev:html": "node build.mjs && node --watch-path=src build.mjs",
+    "dev:server": "node scripts/dev-server.mjs",
+    "dev": "concurrently \"bun run dev:css\" \"bun run dev:html\" \"bun run dev:server\""
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "@types/bun": "latest",
+    "concurrently": "^10.0.6",
+    "tailwindcss": "^4.3.3"
+  },
+  "peerDependencies": {
+    "typescript": "^7"
+  }
+}

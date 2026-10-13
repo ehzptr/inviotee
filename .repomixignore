@@ -1,0 +1,12 @@
+node_modules
+.yarn
+.eslinttcache
+.impeccable
+.old-inviotee
+.agents
+.claude
+.serena
+tests/integration-tests/fixtures
+
+index.ts
+index.html

@@ -1,0 +1,43 @@
+{
+  "theme": "chinese-java",
+  "date": "2027-02-21",
+  "groom": {
+    "nick": "Bima",
+    "name": "Bima Prasetya",
+    "parents": ["Putra kedua Bapak Suryanto", "dan Ibu Sri Wahyuni"],
+    "ig": "bima.prasetya"
+  },
+  "bride": {
+    "nick": "Laras",
+    "name": "Larasati Wibowo",
+    "parents": ["Putri pertama Bapak Hendra Wijaya", "dan Ibu Ratna Dewi"],
+    "ig": "larasati.w"
+  },
+  "verse": {
+    "text": "Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.",
+    "source": "Q.S. Ar-Rum ayat 21"
+  },
+  "event": {
+    "akad": "08.00 WIB – selesai",
+    "resepsi": "11.00 – 13.00 WIB",
+    "calendarStart": "08:00",
+    "calendarEnd": "13:00"
+  },
+  "venue": {
+    "name": "Gedung Melati",
+    "address": "Jl. Cempaka Putih Raya No. 17, Jakarta Pusat"
+  },
+  "story": [
+    { "year": "2013", "title": "Pertama bertemu", "text": "Agustus 2013 kami bertemu di Ospek perkuliahan. Selama kuliah kami hanya teman biasa." },
+    { "year": "2018", "title": "Menjalin hubungan", "text": "25 Februari 2018 kami mengikat janji sebagai sepasang kekasih." },
+    { "year": "2021", "title": "Bertunangan", "text": "Lika-liku hubungan kami lalui bersama hingga memutuskan bertunangan pada 25 Februari 2021." },
+    { "year": "{{year}}", "title": "Menikah", "text": "Kami memutuskan mengikat janji suci pernikahan pada {{dateFull}}." }
+  ],
+  "rsvpDeadline": "2027-02-07",
+  "banks": [
+    { "bank": "BCA", "number": "8890123456", "name": "Bima Prasetya" },
+    { "bank": "BCA", "number": "1122334455", "name": "Larasati Wibowo" }
+  ],
+  "gift": { "address": "Jl. Melati Indah Blok C2 No. 5, Jakarta Pusat 10510" },
+  "music": { "label": "Instrumental Akustik" }
+}

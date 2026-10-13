@@ -1,0 +1,57 @@
+@import "tailwindcss" source(none);
+@source "../chinese-java/**/*.html";
+@source "../batak-dayak/**/*.html";
+
+@theme {
+    --color-cream: #F3E1CF;
+    --color-paper: #FBF4EA;
+    --color-ink: #573E28;
+    --color-muted: #6B5440;    /* 5.5:1 on cream; replaces ink/60 (3.4:1) */
+    --color-gold: #D1A046;
+    --color-gold-ink: #8B6914; /* gold for text: 4.6:1 on cream (was #7D5A10, 3.8:1) */
+    --color-seal: #9A2B1E;     /* Chinese red, used sparingly: ampersands */
+    --font-sans: "Outfit", sans-serif;
+    --font-display: "Cormorant Garamond", serif;
+}
+
+@layer base {
+    html:not(.open) { overflow: hidden; } /* locked on the cover until the invitation is opened */
+    html, body { background: var(--color-cream); }
+    body { font-family: var(--font-sans); color: var(--color-ink); -webkit-tap-highlight-color: transparent; }
+    h1, h2, h3, blockquote { text-wrap: balance; }
+    p { text-wrap: pretty; }
+    ::selection { background: color-mix(in srgb, var(--color-gold) 45%, transparent); }
+    :focus-visible { outline: 2px solid var(--color-gold-ink); outline-offset: 2px; }
+    dialog::backdrop { background: rgb(40 26 14 / .6); }
+    button { cursor: pointer; }
+    #stage { touch-action: none; }
+    [data-scroll] { touch-action: pan-y; }
+    .field:user-invalid { border-color: #a3402a; }
+}
+
+@utility btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-ink px-6 text-sm font-medium text-paper shadow-[0_10px_24px_-10px_rgb(87_62_40/.55)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#6a4c31] active:translate-y-0 active:scale-[.97] disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-ink;
+}
+@utility btn-ghost {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-ink/30 px-5 text-sm font-medium text-ink transition duration-200 hover:bg-ink/5 active:scale-[.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-ink;
+}
+@utility tlink {
+    @apply inline-flex min-h-8 items-center gap-1.5 text-sm font-medium text-gold-ink underline decoration-gold/60 underline-offset-4 transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-ink;
+}
+@utility field {
+    @apply w-full rounded-xl border border-ink/25 bg-white px-3.5 py-2.5 text-sm text-ink transition-colors focus:border-gold-ink disabled:bg-ink/5 disabled:text-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-ink;
+}
+@utility grain {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .34 0 0 0 0 .24 0 0 0 0 .16 0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* solid floating surface: readable over the patterned background */
+@utility float {
+    @apply bg-paper ring-1 ring-ink/25 shadow-[0_8px_24px_-8px_rgb(87_62_40/.5)];
+}
+@utility nav-chip {
+    @apply relative z-10 flex h-14 w-full flex-col items-center justify-center gap-0.5 text-xs font-medium text-muted transition-colors duration-300 aria-[current=true]:text-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-ink;
+}
+@utility act-btn {
+    @apply grid size-12 place-items-center rounded-full bg-ink/10 text-ink transition duration-200 hover:bg-ink/15 active:scale-95 aria-pressed:bg-ink aria-pressed:text-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-ink;
+}
