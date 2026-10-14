@@ -1,0 +1,125 @@
+diff -ruN -x dist -x node_modules orig/src/chinese-java/DESIGN.md repo/src/chinese-java/DESIGN.md
+--- orig/src/chinese-java/DESIGN.md	2026-10-14 12:37:38.023584394 +0700
++++ repo/src/chinese-java/DESIGN.md	2026-10-14 12:37:50.422770181 +0700
+@@ -33,7 +33,7 @@
+     lineHeight: 1.5
+   label:
+     fontFamily: "Outfit, system-ui, sans-serif"
+-    fontSize: "12px"
++    fontSize: "13px"
+     fontWeight: 500
+     lineHeight: 1.4
+     letterSpacing: "0.01em"
+@@ -205,4 +205,3 @@
+ - **Don't** remove hover/focus feedback, including for reduced-motion users.
+ - **Don't** replace content copy or guest flows without updating the content JSON and build checks.
+ - **Don't** hardcode guest-specific content that belongs in `src/content/<theme>.json`.
+-```<|end|><|start|>write to=assistant<|channel|>analysis<|message|>Created file successfully: DESIGN.md
+diff -ruN -x dist -x node_modules orig/src/chinese-java/scroll.html repo/src/chinese-java/scroll.html
+--- orig/src/chinese-java/scroll.html	2026-10-14 12:37:38.025940411 +0700
++++ repo/src/chinese-java/scroll.html	2026-10-14 12:37:50.432300712 +0700
+@@ -54,7 +54,7 @@
+                     <span class="self-center text-[36px] font-medium text-seal">&amp;</span>
+                     <span class="self-end">{{bride.nick}}</span>
+                 </h1>
+-                <p class="text-sm font-medium tabular-nums">{{dateLong}}</p>
++                <p class="font-display text-[22px] font-medium italic leading-tight">{{dateLong}}</p>
+             </div>
+             <div data-in="up" class="mt-6 max-w-[300px]">
+                 <p class="text-sm text-muted">Kepada Yth.<br>Bapak/Ibu/Saudara/i</p>
+diff -ruN -x dist -x node_modules orig/src/chinese-java/swipe.html repo/src/chinese-java/swipe.html
+--- orig/src/chinese-java/swipe.html	2026-10-14 12:37:38.027395893 +0700
++++ repo/src/chinese-java/swipe.html	2026-10-14 12:37:50.432925849 +0700
+@@ -63,7 +63,7 @@
+                             <span class="self-center text-[36px] font-medium text-seal">&amp;</span>
+                             <span class="self-end">{{bride.nick}}</span>
+                         </h1>
+-                        <p class="text-sm font-medium tabular-nums">{{dateLong}}</p>
++                        <p class="font-display text-[22px] font-medium italic leading-tight">{{dateLong}}</p>
+                     </div>
+                     <div data-in="up" class="mt-6 max-w-[300px]">
+                         <p class="text-sm text-muted">Kepada Yth.<br>Bapak/Ibu/Saudara/i</p>
+@@ -75,7 +75,7 @@
+ 
+                 <!-- 1 ayat -->
+                 <section
+-                    class="slide absolute inset-0 flex flex-col items-start justify-center px-[40px] py-[72px] text-left" data-id="verse" data-dur="6" aria-label="Ayat">
++                    class="slide absolute inset-0 flex flex-col items-start justify-center px-[40px] py-[72px] text-left" data-id="verse" data-dur="10" aria-label="Ayat">
+                     <span data-in="down" aria-hidden="true"
+                         class="font-display text-[96px] leading-[.6] text-gold/70">&ldquo;</span>
+                     <blockquote data-in="up">
+@@ -86,7 +86,7 @@
+ 
+                 <!-- 2 mempelai -->
+                 <section
+-                    class="slide absolute inset-0 flex flex-col items-start justify-center px-[34px] py-[72px] text-left" data-id="couple" data-dur="6" aria-label="Mempelai">
++                    class="slide absolute inset-0 flex flex-col items-start justify-center px-[34px] py-[72px] text-left" data-id="couple" data-dur="9" aria-label="Mempelai">
+                     <p data-in="down" class="mb-6 text-sm text-muted">Tanpa mengurangi rasa hormat, kami bermaksud
+                         mengundang Bapak/Ibu/Saudara/i pada acara resepsi pernikahan kami:</p>
+                     <div data-in="up" class="mb-2">
+diff -ruN -x dist -x node_modules orig/src/chinese-java/zoom.html repo/src/chinese-java/zoom.html
+--- orig/src/chinese-java/zoom.html	2026-10-14 12:37:38.025089749 +0700
++++ repo/src/chinese-java/zoom.html	2026-10-14 12:37:50.433619498 +0700
+@@ -78,7 +78,7 @@
+                                 <span class="self-center text-[36px] font-medium text-seal">&amp;</span>
+                                 <span class="self-end">{{bride.nick}}</span>
+                             </h1>
+-                            <p class="text-sm font-medium tabular-nums">{{dateLong}}</p>
++                            <p class="font-display text-[22px] font-medium italic leading-tight">{{dateLong}}</p>
+                         </div>
+                         <div data-in="up" class="mt-6 max-w-[300px]">
+                             <p class="text-sm text-muted">Kepada Yth.<br>Bapak/Ibu/Saudara/i</p>
+@@ -101,7 +101,7 @@
+                         </div>
+                     </div>
+                     <section
+-                        class="pc absolute inset-0 flex flex-col items-start justify-center px-[40px] py-[72px] text-left" data-id="verse" data-dur="6" aria-label="Ayat">
++                        class="pc absolute inset-0 flex flex-col items-start justify-center px-[40px] py-[72px] text-left" data-id="verse" data-dur="10" aria-label="Ayat">
+                         <span data-in="down" aria-hidden="true"
+                             class="font-display text-[96px] leading-[.6] text-gold">&ldquo;</span>
+                         <blockquote data-in="up">
+@@ -122,7 +122,7 @@
+                         </div>
+                     </div>
+                     <section
+-                        class="pc absolute inset-0 flex flex-col items-start justify-center px-[34px] py-[72px] text-left" data-id="couple" data-dur="6" aria-label="Mempelai">
++                        class="pc absolute inset-0 flex flex-col items-start justify-center px-[34px] py-[72px] text-left" data-id="couple" data-dur="9" aria-label="Mempelai">
+                         <p data-in="down" class="mb-6 text-sm text-muted">Tanpa mengurangi rasa hormat, kami bermaksud
+                             mengundang Bapak/Ibu/Saudara/i pada acara resepsi pernikahan kami:</p>
+                         <div data-in="up" class="mb-2">
+diff -ruN -x dist -x node_modules orig/src/content/chinese-java.json repo/src/content/chinese-java.json
+--- orig/src/content/chinese-java.json	2026-10-14 12:37:38.025412531 +0700
++++ repo/src/content/chinese-java.json	2026-10-14 12:37:50.412283262 +0700
+@@ -22,8 +22,8 @@
+     "source": "HR. Abu Daud"
+   },
+   "event": {
+-    "akad": "08.00 WIB – selesai",
+-    "resepsi": "11.00 – 13.00 WIB",
++    "akad": "08.00 WIB - selesai",
++    "resepsi": "11.00 - 13.00 WIB",
+     "calendarStart": "08:00",
+     "calendarEnd": "13:00"
+   },
+diff -ruN -x dist -x node_modules orig/src/styles/main.css repo/src/styles/main.css
+--- orig/src/styles/main.css	2026-10-14 12:37:38.027780348 +0700
++++ repo/src/styles/main.css	2026-10-14 12:37:50.451704182 +0700
+@@ -13,6 +13,8 @@
+     --color-seal: #9A2B1E;     /* Chinese red, used sparingly: ampersands */
+     --font-sans: "Outfit", sans-serif;
+     --font-display: "Cormorant Garamond", serif;
++    --text-xs: 0.8125rem;      /* 13px labels (was 12px); line-height unchanged so layouts keep their height */
++    --text-xs--line-height: 1rem;
+     --motion-fast: 120ms;
+     --motion-ui: 200ms;
+     --motion-slow: 300ms;
+@@ -63,6 +65,9 @@
+     @apply grid size-12 place-items-center rounded-full bg-ink/10 text-ink transition duration-200 hover:bg-ink/15 active:scale-95 aria-pressed:bg-ink aria-pressed:text-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-ink;
+ }
+ 
++/* every tlink gets a 44px-tall hit area (invisible) without changing layout; scroll mode also grows the box itself */
++.tlink { position: relative; }
++.tlink::after { content: ""; position: absolute; inset: -6px -8px; }
+ /* scroll mode keeps 44px tap targets; swipe/zoom use the compact 32px tlink */
+ #page .tlink { min-height: 2.75rem; }
+ 
